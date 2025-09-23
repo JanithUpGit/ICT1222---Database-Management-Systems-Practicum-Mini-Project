@@ -5,10 +5,11 @@ USE university;
 CREATE TABLE Student (  
     RegNo VARCHAR(15) 
     PRIMARY KEY,   
-    Name VARCHAR(100),   
+    Dob INT,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,  
     Gender CHAR(1),  
-    Batch VARCHAR(10),   
-    Status ENUM('Proper','Repeat','Suspended'),  
+    Batch VARCHAR(10),    
     Contact VARCHAR(15),   
     Email VARCHAR(100) 
 );
@@ -21,7 +22,43 @@ CREATE TABLE Lecturer (
     Email VARCHAR(100) UNIQUE NOT NULL,
     Phone VARCHAR(15),
     DepartmentID INT NOT NULL,
-    UserID INT NOT NULL, -- FK to Users table
+    UserID INT NOT NULL,
     Role ENUM('Lecturer', 'Dean') DEFAULT 'Lecturer',
-    Status ENUM('Active', 'Inactive') DEFAULT 'Active'
+);
+
+CREATE TABLE TechnicalOfficer (
+    TOID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Phone VARCHAR(15),
+    DepartmentID INT NOT NULL,
+    UserID INT NOT NULL,
+    Role ENUM('TO') DEFAULT 'TO',
+);
+
+
+CREATE TABLE Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL, 
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Status ENUM('Active','Inactive') DEFAULT 'Active'
+);
+
+CREATE TABLE Department (
+    DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
+    DeptCode VARCHAR(10) UNIQUE NOT NULL,
+    DeptName VARCHAR(100) NOT NULL,
+);
+
+CREATE TABLE Course (
+    CourseID INT AUTO_INCREMENT PRIMARY KEY,
+    CourseCode VARCHAR(10) UNIQUE NOT NULL,
+    CourseName VARCHAR(100) NOT NULL,
+    Credits INT NOT NULL,
+    Type ENUM('Theory','Practical','Both') NOT NULL,
+    DepartmentID INT NOT NULL,
+    LecturerID INT NOT NULL,
 );
