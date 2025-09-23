@@ -5,7 +5,7 @@ USE university;
 CREATE TABLE Student (  
     RegNo VARCHAR(15) 
     PRIMARY KEY,   
-    Dob INT,
+    Dob DATE NOT NULL,
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,  
     Gender CHAR(1),  
@@ -58,7 +58,26 @@ CREATE TABLE Course (
     CourseCode VARCHAR(10) UNIQUE NOT NULL,
     CourseName VARCHAR(100) NOT NULL,
     Credits INT NOT NULL,
-    Type ENUM('Theory','Practical','Both') NOT NULL,
+    TotalHours INT NOT NULL,
     DepartmentID INT NOT NULL,
     LecturerID INT NOT NULL,
+);
+CREATE TABLE Lecture (
+    LectureID INT AUTO_INCREMENT PRIMARY KEY,
+    CourseID INT NOT NULL,
+    LecturerID INT NOT NULL,
+    LectureDate DATE NOT NULL,
+    StartTime TIME NOT NULL,
+    DurationHours DECIMAL(4,2) NOT NULL,
+    SessionType ENUM('Theory','Practical') NOT NULL,
+);
+
+CREATE TABLE Attendance (
+    AttendanceID INT AUTO_INCREMENT PRIMARY KEY,
+    RegNo VARCHAR(15) NOT NULL,
+    CourseID INT NOT NULL,
+    SessionDate DATE NOT NULL,
+    SessionType ENUM('Theory','Practical') NOT NULL,
+    Status ENUM('Present','Absent','Medical') NOT NULL,
+    RecordedBy INT NOT NULL,
 );
