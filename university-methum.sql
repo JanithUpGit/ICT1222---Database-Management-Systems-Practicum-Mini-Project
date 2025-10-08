@@ -41,7 +41,7 @@ CREATE TABLE TechnicalOfficer (
 CREATE TABLE Users (
     UserID INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(50) UNIQUE NOT NULL,
-    Role   varchar(8) NOT NULL,  /*'Admin', 'Dean', 'Lecturer', 'TO', 'Student'*/
+    Role ENUM('Admin', 'Dean', 'Lecturer', 'TO', 'Student') NOT NULL,
     PasswordHash VARCHAR(255) NOT NULL, 
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -62,6 +62,8 @@ CREATE TABLE Course (
     TotalHours INT NOT NULL,
     DepartmentID INT NOT NULL,
     LecturerID INT NOT NULL,
+    FORIEGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
+    FORIEGN KEY (LecturerID) REFERENCES Lecturer(LecturerID)
 );
 CREATE TABLE Lecture (
     LectureID INT AUTO_INCREMENT PRIMARY KEY,
