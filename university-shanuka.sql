@@ -3,7 +3,7 @@ CREATE DATABASE university;
 USE university;
 
 CREATE TABLE Student (  
-    RegNo VARCHAR(15) 
+    RegNo VARCHAR(15),
     PRIMARY KEY,   
     Dob DATE NOT NULL,
     FirstName VARCHAR(50) NOT NULL,
@@ -82,6 +82,22 @@ CREATE TABLE Attendance (
     RecordedBy INT NOT NULL,
 );
 
+/*Create Exam marks table*/
+
+CREATE TABLE ExamMarks (
+    MarkID INT AUTO_INCREMENT PRIMARY KEY,
+    RegNo VARCHAR(15) NOT NULL,
+    CourseID INT NOT NULL,
+    ExamType ENUM('Quiz','Assessment','MidTheory','MidPractical','FinalTheory','FinalPractical') NOT NULL,
+    MarksObtained DECIMAL(5,2) NOT NULL,
+    TotalMarks DECIMAL(5,2) NOT NULL,
+    ExamDate DATE,
+    RecordedBy INT NOT NULL,
+);
+
+
+
+
 
 /* Create user accounts*/
 
@@ -120,3 +136,6 @@ CREATE USER 'Student'@'%' IDENTIFIED BY 'Student@123';
 GRANT SELECT ON university_db.final_attendance_view TO 'Student'@'%';
 GRANT SELECT ON university_db.final_grades_view TO 'Student'@'%';
 FLUSH PRIVILEGES;
+
+
+
