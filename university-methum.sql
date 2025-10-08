@@ -88,6 +88,20 @@ CREATE TABLE Attendance (
     FORIEGN KEY (CourseID) REFERENCES Course(CourseID),
 );
 
+
+
+/* Create Enrollment table */
+
+CREATE TABLE Enrollment(
+    RegNo VARCHAR(15) NOT NULL,
+    CourseID INT NOT NULL,
+    SEMESTER INT NOT NULL,
+    Year INT NOT NULL,
+    PRIMARY KEY (RegNo, CourseID),
+    FORIEGN KEY (RegNo) REFERENCES Student(RegNo),
+    FORIEGN KEY (CourseID) REFERENCES Course(CourseID)
+);
+
 /*Create Exam marks table*/
 
 CREATE TABLE ExamMarks (
@@ -102,7 +116,7 @@ CREATE TABLE ExamMarks (
     FORIEGN KEY (RegNo) REFERENCES Student(RegNo),
     FORIEGN KEY (CourseID) REFERENCES Course(CourseID)
 
-    
+
 );
 
 
