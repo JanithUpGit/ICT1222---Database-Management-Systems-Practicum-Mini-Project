@@ -3,55 +3,56 @@ CREATE DATABASE university;
 USE university;
 
 CREATE TABLE Student (  
-    RegNo VARCHAR(15) 
-    PRIMARY KEY,   
-    Dob DATE NOT NULL,
-    FirstName VARCHAR(50) NOT NULL,
-    LastName VARCHAR(50) NOT NULL,  
-    Gender CHAR(1),  
-    Batch VARCHAR(10),    
-    Contact VARCHAR(15),   
-    Email VARCHAR(100) 
+    UserID INT,
+    StudentRegNo VARCHAR(15),
+    Batch VARCHAR(10)   
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+        ON DELETE CASCADE ON UPDATE CASCADE,
 );
 
 CREATE TABLE Lecturer (
-    LecturerID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT,
     StaffCode VARCHAR(10) UNIQUE NOT NULL,
-    FirstName VARCHAR(50) NOT NULL,
-    LastName VARCHAR(50) NOT NULL,
-    Email VARCHAR(100) UNIQUE NOT NULL,
-    Phone VARCHAR(15),
-    DepartmentID INT NOT NULL,
-    UserID INT NOT NULL,
     Role ENUM('Lecturer', 'Dean') DEFAULT 'Lecturer',
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    
 );
 
 CREATE TABLE TechnicalOfficer (
+    UserID INT,
     TOID INT AUTO_INCREMENT PRIMARY KEY,
-    FirstName VARCHAR(50) NOT NULL,
-    LastName VARCHAR(50) NOT NULL,
-    Email VARCHAR(100) UNIQUE NOT NULL,
-    Phone VARCHAR(15),
-    DepartmentID INT NOT NULL,
-    UserID INT NOT NULL,
     Role ENUM('TO') DEFAULT 'TO',
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+        ON DELETE CASCADE ON UPDATE CASCADE,
 );
 
 
 CREATE TABLE Users (
-    UserID INT AUTO_INCREMENT PRIMARY KEY,
-    Username VARCHAR(50) UNIQUE NOT NULL,
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,  
+    Dob DATE NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Phone VARCHAR(15) UNIQUE NOT NULL,
+    Address VARCHAR(100),
+    DepartmentID INT NOT NULL,
     PasswordHash VARCHAR(255) NOT NULL, 
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Status ENUM('Active','Inactive') DEFAULT 'Active'
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    Status ENUM('Active','Inactive') DEFAULT 'Active',
+    FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 
 CREATE TABLE Department (
     DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
     DeptCode VARCHAR(10) UNIQUE NOT NULL,
     DeptName VARCHAR(100) NOT NULL,
 );
+
+
 
 CREATE TABLE Course (
     CourseID INT AUTO_INCREMENT PRIMARY KEY,
