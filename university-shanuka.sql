@@ -81,3 +81,8 @@ CREATE TABLE Attendance (
     Status ENUM('Present','Absent','Medical') NOT NULL,
     RecordedBy INT NOT NULL,
 );
+
+
+/* Create user accounts*/
+
+
