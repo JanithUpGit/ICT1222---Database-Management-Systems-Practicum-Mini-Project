@@ -41,6 +41,7 @@ CREATE TABLE TechnicalOfficer (
 CREATE TABLE Users (
     UserID INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(50) UNIQUE NOT NULL,
+    Role   varchar(8) NOT NULL,  /*'Admin', 'Dean', 'Lecturer', 'TO', 'Student'*/
     PasswordHash VARCHAR(255) NOT NULL, 
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -136,3 +137,7 @@ CREATE USER 'Student'@'%' IDENTIFIED BY 'Student@123';
 GRANT SELECT ON university_db.final_attendance_view TO 'Student'@'%';
 GRANT SELECT ON university_db.final_grades_view TO 'Student'@'%';
 FLUSH PRIVILEGES;
+
+
+
+
