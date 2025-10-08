@@ -99,6 +99,10 @@ CREATE TABLE ExamMarks (
     TotalMarks DECIMAL(5,2) NOT NULL,
     ExamDate DATE,
     RecordedBy INT NOT NULL,
+    FORIEGN KEY (RegNo) REFERENCES Student(RegNo),
+    FORIEGN KEY (CourseID) REFERENCES Course(CourseID)
+
+    
 );
 
 
