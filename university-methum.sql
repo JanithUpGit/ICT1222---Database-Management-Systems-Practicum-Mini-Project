@@ -84,6 +84,8 @@ CREATE TABLE Attendance (
     SessionType ENUM('Theory','Practical') NOT NULL,
     Status ENUM('Present','Absent','Medical') NOT NULL,
     RecordedBy INT NOT NULL,
+    FORIEGN KEY (RegNo) REFERENCES Student(RegNo),
+    FORIEGN KEY (CourseID) REFERENCES Course(CourseID),
 );
 
 /*Create Exam marks table*/
@@ -98,6 +100,10 @@ CREATE TABLE ExamMarks (
     ExamDate DATE,
     RecordedBy INT NOT NULL,
 );
+
+
+
+
 
 
 
