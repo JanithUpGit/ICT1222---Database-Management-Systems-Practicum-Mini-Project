@@ -13,6 +13,8 @@ CREATE TABLE Student (
     Batch VARCHAR(10),    
     Contact VARCHAR(15),   
     Email VARCHAR(100) 
+    UserID INT NOT NULL,
+    FORIEGN KEY (UserID) REFERENCES Users(UserID)
 );
 
 CREATE TABLE Lecturer (
@@ -25,6 +27,8 @@ CREATE TABLE Lecturer (
     DepartmentID INT NOT NULL,
     UserID INT NOT NULL,
     Role ENUM('Lecturer', 'Dean') DEFAULT 'Lecturer',
+    FORIEGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
+    FORIEGN KEY (UserID) REFERENCES Users(UserID)
 );
 
 CREATE TABLE TechnicalOfficer (
@@ -36,6 +40,8 @@ CREATE TABLE TechnicalOfficer (
     DepartmentID INT NOT NULL,
     UserID INT NOT NULL,
     Role ENUM('TO') DEFAULT 'TO',
+    FORIEGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
+    FORIEGN KEY (UserID) REFERENCES Users(UserID)
 );
 
 
@@ -118,6 +124,8 @@ CREATE TABLE ExamMarks (
 
 
 );
+
+
 
 
 
