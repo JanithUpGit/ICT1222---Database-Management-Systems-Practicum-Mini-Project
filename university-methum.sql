@@ -137,5 +137,4 @@ GRANT SELECT ON university_db.final_attendance_view TO 'Student'@'%';
 GRANT SELECT ON university_db.final_grades_view TO 'Student'@'%';
 FLUSH PRIVILEGES;
 
-
-
+\
