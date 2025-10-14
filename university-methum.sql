@@ -125,6 +125,27 @@ CREATE TABLE ExamMarks (
 
 );
 
+/* Create Grades table */
+CREATE TABLE grades (
+    grade_id INT AUTO_INCREMENT PRIMARY KEY,
+    grade CHAR(2),
+    min_mark INT,
+    max_mark INT,
+    gpa_value DECIMAL(2,1)
+);
+
+/* Create Results table */
+CREATE TABLE results (
+    result_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    course_code VARCHAR(10),
+    total_mark DECIMAL(5,2),
+    grade CHAR(2),
+    eligibility BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (student_id) REFERENCES Student(RegNo),
+    FOREIGN KEY (course_code) REFERENCES Course(CourseCode)
+);
+
 
 
 
