@@ -1,22 +1,40 @@
 CREATE DATABASE university;
-
 USE university;
 
+-- USERS TABLE
+CREATE TABLE Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) UNIQUE NOT NULL,
+    Role ENUM('Admin', 'Dean', 'Lecturer', 'TO', 'Student') NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    Status ENUM('Active','Inactive') DEFAULT 'Active'
+);
+
+-- DEPARTMENT TABLE
+CREATE TABLE Department (
+    DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
+    DeptCode VARCHAR(10) UNIQUE NOT NULL,
+    DeptName VARCHAR(100) NOT NULL
+);
+
+-- STUDENT TABLE
 CREATE TABLE Student (  
-    RegNo VARCHAR(15)
-    PRIMARY KEY,   
+    RegNo VARCHAR(15) PRIMARY KEY,
     Dob DATE NOT NULL,
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
-    Status ENUM('Proper','Repeat') ,  
-    Gender CHAR(1),  
-    Batch VARCHAR(10),    
-    Contact VARCHAR(15),   
-    Email VARCHAR(100) 
+    Status ENUM('Proper','Repeat') DEFAULT 'Proper',
+    Gender CHAR(1),
+    Batch VARCHAR(10),
+    Contact VARCHAR(15),
+    Email VARCHAR(100),
     UserID INT NOT NULL,
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
+-- LECTURER TABLE
 CREATE TABLE Lecturer (
     LecturerID INT AUTO_INCREMENT PRIMARY KEY,
     StaffCode VARCHAR(10) UNIQUE NOT NULL,
@@ -31,6 +49,7 @@ CREATE TABLE Lecturer (
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
+-- TECHNICAL OFFICER TABLE
 CREATE TABLE TechnicalOfficer (
     TOID INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
@@ -44,23 +63,7 @@ CREATE TABLE TechnicalOfficer (
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
-
-CREATE TABLE Users (
-    UserID INT AUTO_INCREMENT PRIMARY KEY,
-    Username VARCHAR(50) UNIQUE NOT NULL,
-    Role ENUM('Admin', 'Dean', 'Lecturer', 'TO', 'Student') NOT NULL,
-    PasswordHash VARCHAR(255) NOT NULL, 
-    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Status ENUM('Active','Inactive') DEFAULT 'Active'
-);
-
-CREATE TABLE Department (
-    DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
-    DeptCode VARCHAR(10) UNIQUE NOT NULL,
-    DeptName VARCHAR(100) NOT NULL,
-);
-
+-- COURSE TABLE
 CREATE TABLE Course (
     CourseID INT AUTO_INCREMENT PRIMARY KEY,
     CourseCode VARCHAR(10) UNIQUE NOT NULL,
@@ -72,6 +75,8 @@ CREATE TABLE Course (
     FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
     FOREIGN KEY (LecturerID) REFERENCES Lecturer(LecturerID)
 );
+
+-- LECTURE TABLE
 CREATE TABLE Lecture (
     LectureID INT AUTO_INCREMENT PRIMARY KEY,
     CourseID INT NOT NULL,
@@ -80,8 +85,11 @@ CREATE TABLE Lecture (
     StartTime TIME NOT NULL,
     DurationHours DECIMAL(4,2) NOT NULL,
     SessionType ENUM('Theory','Practical') NOT NULL,
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID),
+    FOREIGN KEY (LecturerID) REFERENCES Lecturer(LecturerID)
 );
 
+-- ATTENDANCE TABLE
 CREATE TABLE Attendance (
     AttendanceID INT AUTO_INCREMENT PRIMARY KEY,
     RegNo VARCHAR(15) NOT NULL,
@@ -91,25 +99,21 @@ CREATE TABLE Attendance (
     Status ENUM('Present','Absent','Medical') NOT NULL,
     RecordedBy INT NOT NULL,
     FOREIGN KEY (RegNo) REFERENCES Student(RegNo),
-    FOREIGN KEY (CourseID) REFERENCES Course(CourseID),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
 );
 
-
-
-/* Create Enrollment table */
-
-CREATE TABLE Enrollment(
+-- ENROLLMENT TABLE
+CREATE TABLE Enrollment (
     RegNo VARCHAR(15) NOT NULL,
     CourseID INT NOT NULL,
-    SEMESTER INT NOT NULL,
+    Semester INT NOT NULL,
     Year INT NOT NULL,
     PRIMARY KEY (RegNo, CourseID),
     FOREIGN KEY (RegNo) REFERENCES Student(RegNo),
     FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
 );
 
-/*Create Exam marks table*/
-
+-- EXAM MARKS TABLE
 CREATE TABLE ExamMarks (
     MarkID INT AUTO_INCREMENT PRIMARY KEY,
     RegNo VARCHAR(15) NOT NULL,
@@ -121,79 +125,47 @@ CREATE TABLE ExamMarks (
     RecordedBy INT NOT NULL,
     FOREIGN KEY (RegNo) REFERENCES Student(RegNo),
     FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
-
-
 );
 
-/* Create Grades table */
-CREATE TABLE grades (
-    grade_id INT AUTO_INCREMENT PRIMARY KEY,
-    grade CHAR(2),
-    min_mark INT,
-    max_mark INT,
-    gpa_value DECIMAL(2,1)
+-- GRADES TABLE
+CREATE TABLE Grades (
+    GradeID INT AUTO_INCREMENT PRIMARY KEY,
+    Grade CHAR(2),
+    MinMark INT,
+    MaxMark INT,
+    GPA_Value DECIMAL(2,1)
 );
 
-/* Create Results table */
-CREATE TABLE results (
-    result_id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT,
-    course_code VARCHAR(10),
-    total_mark DECIMAL(5,2),
-    grade CHAR(2),
-    eligibility BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (student_id) REFERENCES Student(RegNo),
-    FOREIGN KEY (course_code) REFERENCES Course(CourseCode)
+-- RESULTS TABLE
+CREATE TABLE Results (
+    ResultID INT AUTO_INCREMENT PRIMARY KEY,
+    StudentID VARCHAR(15),
+    CourseCode VARCHAR(10),
+    TotalMark DECIMAL(5,2),
+    Grade CHAR(2),
+    Eligibility BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (StudentID) REFERENCES Student(RegNo),
+    FOREIGN KEY (CourseCode) REFERENCES Course(CourseCode)
 );
 
-
-
-
-
-
-
-
-
-
-
-/* Create user accounts*/
-
-/*Admin*/
+-- MYSQL USER ACCOUNTS
 
 CREATE USER 'Admin'@'%' IDENTIFIED BY 'Admin@123';
-GRANT ALL PRIVILEGES ON university_db.* TO 'Admin'@'%' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
-
-/*Dean*/
+GRANT ALL PRIVILEGES ON university.* TO 'Admin'@'%' WITH GRANT OPTION;
 
 CREATE USER 'Dean'@'%' IDENTIFIED BY 'Dean@123';
-GRANT ALL PRIVILEGES ON university_db.* TO 'Dean'@'%';
-FLUSH PRIVILEGES;
-
-/*Lecture*/
+GRANT ALL PRIVILEGES ON university.* TO 'Dean'@'%';
 
 CREATE USER 'Lecturer'@'%' IDENTIFIED BY 'Lecturer@123';
-GRANT ALL PRIVILEGES ON university_db.* TO 'Lecturer'@'%';
-
+GRANT ALL PRIVILEGES ON university.* TO 'Lecturer'@'%';
 REVOKE CREATE USER ON *.* FROM 'Lecturer'@'%';
-FLUSH PRIVILEGES;
-
-
-/*technical officer*/
 
 CREATE USER 'TechnicalOfficer'@'%' IDENTIFIED BY 'Tech@123';
-GRANT SELECT, INSERT, UPDATE ON university_db.attendance TO 'TechnicalOfficer'@'%';
-GRANT SELECT, INSERT, UPDATE ON university_db.attendance_view TO 'TechnicalOfficer'@'%';
-FLUSH PRIVILEGES;
-
-
-/*Student*/
+GRANT SELECT, INSERT, UPDATE ON university.Attendance TO 'TechnicalOfficer'@'%';
 
 CREATE USER 'Student'@'%' IDENTIFIED BY 'Student@123';
-GRANT SELECT ON university_db.final_attendance_view TO 'Student'@'%';
-GRANT SELECT ON university_db.final_grades_view TO 'Student'@'%';
+
+GRANT SELECT ON university.final_attendance_view TO 'Student'@'%';
+GRANT SELECT ON university.final_grades_view TO 'Student'@'%';
+
 FLUSH PRIVILEGES;
-
-
-
-
