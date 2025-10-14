@@ -3,7 +3,7 @@ CREATE DATABASE university;
 USE university;
 
 CREATE TABLE Student (  
-    RegNo VARCHAR(15),
+    RegNo VARCHAR(15)
     PRIMARY KEY,   
     Dob DATE NOT NULL,
     FirstName VARCHAR(50) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE Student (
     Contact VARCHAR(15),   
     Email VARCHAR(100) 
     UserID INT NOT NULL,
-    FORIEGN KEY (UserID) REFERENCES Users(UserID)
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
 CREATE TABLE Lecturer (
@@ -27,8 +27,8 @@ CREATE TABLE Lecturer (
     DepartmentID INT NOT NULL,
     UserID INT NOT NULL,
     Role ENUM('Lecturer', 'Dean') DEFAULT 'Lecturer',
-    FORIEGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
-    FORIEGN KEY (UserID) REFERENCES Users(UserID)
+    FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
 CREATE TABLE TechnicalOfficer (
@@ -40,8 +40,8 @@ CREATE TABLE TechnicalOfficer (
     DepartmentID INT NOT NULL,
     UserID INT NOT NULL,
     Role ENUM('TO') DEFAULT 'TO',
-    FORIEGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
-    FORIEGN KEY (UserID) REFERENCES Users(UserID)
+    FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
 
@@ -69,8 +69,8 @@ CREATE TABLE Course (
     TotalHours INT NOT NULL,
     DepartmentID INT NOT NULL,
     LecturerID INT NOT NULL,
-    FORIEGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
-    FORIEGN KEY (LecturerID) REFERENCES Lecturer(LecturerID)
+    FOREIGN KEY (DepartmentID) REFERENCES Department(DepartmentID),
+    FOREIGN KEY (LecturerID) REFERENCES Lecturer(LecturerID)
 );
 CREATE TABLE Lecture (
     LectureID INT AUTO_INCREMENT PRIMARY KEY,
@@ -90,8 +90,8 @@ CREATE TABLE Attendance (
     SessionType ENUM('Theory','Practical') NOT NULL,
     Status ENUM('Present','Absent','Medical') NOT NULL,
     RecordedBy INT NOT NULL,
-    FORIEGN KEY (RegNo) REFERENCES Student(RegNo),
-    FORIEGN KEY (CourseID) REFERENCES Course(CourseID),
+    FOREIGN KEY (RegNo) REFERENCES Student(RegNo),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID),
 );
 
 
@@ -104,8 +104,8 @@ CREATE TABLE Enrollment(
     SEMESTER INT NOT NULL,
     Year INT NOT NULL,
     PRIMARY KEY (RegNo, CourseID),
-    FORIEGN KEY (RegNo) REFERENCES Student(RegNo),
-    FORIEGN KEY (CourseID) REFERENCES Course(CourseID)
+    FOREIGN KEY (RegNo) REFERENCES Student(RegNo),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
 );
 
 /*Create Exam marks table*/
@@ -119,8 +119,8 @@ CREATE TABLE ExamMarks (
     TotalMarks DECIMAL(5,2) NOT NULL,
     ExamDate DATE,
     RecordedBy INT NOT NULL,
-    FORIEGN KEY (RegNo) REFERENCES Student(RegNo),
-    FORIEGN KEY (CourseID) REFERENCES Course(CourseID)
+    FOREIGN KEY (RegNo) REFERENCES Student(RegNo),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
 
 
 );
