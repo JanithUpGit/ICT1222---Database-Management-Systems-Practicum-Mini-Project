@@ -1,32 +1,12 @@
 CREATE DATABASE university;
 
-USE university;
+USE university
 
-CREATE TABLE Student (  
-    UserID INT,
-    StudentRegNo VARCHAR(15),
-    Batch VARCHAR(10)   
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
-        ON DELETE CASCADE ON UPDATE CASCADE,
+CREATE TABLE Department (
+    DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
+    DeptCode VARCHAR(10) UNIQUE NOT NULL,
+    DeptName VARCHAR(100) NOT NULL
 );
-
-CREATE TABLE Lecturer (
-    UserID INT,
-    StaffCode VARCHAR(10) UNIQUE NOT NULL,
-    Role ENUM('Lecturer', 'Dean') DEFAULT 'Lecturer',
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    
-);
-
-CREATE TABLE TechnicalOfficer (
-    UserID INT,
-    TOID INT AUTO_INCREMENT PRIMARY KEY,
-    Role ENUM('TO') DEFAULT 'TO',
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-);
-
 
 CREATE TABLE Users (
     Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,13 +26,29 @@ CREATE TABLE Users (
 );
 
 
-CREATE TABLE Department (
-    DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
-    DeptCode VARCHAR(10) UNIQUE NOT NULL,
-    DeptName VARCHAR(100) NOT NULL,
+CREATE TABLE Student (  
+    UserID INT,
+    StudentRegNo VARCHAR(15),
+    Batch VARCHAR(10),
+    FOREIGN KEY (UserID) REFERENCES Users(Id)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE Lecturer (
+    UserID INT,
+    StaffCode VARCHAR(10) UNIQUE NOT NULL,
+    Role ENUM('Lecturer', 'Dean') DEFAULT 'Lecturer',
+    FOREIGN KEY (UserID) REFERENCES Users(Id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
 
+CREATE TABLE TechnicalOfficer (
+    UserID INT,
+    TOID INT AUTO_INCREMENT PRIMARY KEY,
+    Role ENUM('TO') DEFAULT 'TO',
+    FOREIGN KEY (UserID) REFERENCES Users(Id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 CREATE TABLE Course (
     CourseID INT AUTO_INCREMENT PRIMARY KEY,
@@ -61,8 +57,10 @@ CREATE TABLE Course (
     Credits INT NOT NULL,
     TotalHours INT NOT NULL,
     DepartmentID INT NOT NULL,
-    LecturerID INT NOT NULL,
+    LecturerID INT NOT NULL
 );
+
+
 CREATE TABLE Lecture (
     LectureID INT AUTO_INCREMENT PRIMARY KEY,
     CourseID INT NOT NULL,
@@ -82,3 +80,65 @@ CREATE TABLE Attendance (
     Status ENUM('Present','Absent','Medical') NOT NULL,
     RecordedBy INT NOT NULL,
 );
+
+
+CREATE TABLE Marks (
+    MarkID INT AUTO_INCREMENT PRIMARY KEY,
+    RegNo VARCHAR(15) NOT NULL,           
+    CourseID INT NOT NULL,                    
+    ExamType ENUM('Quiz', 'Assessment', 'Mid Theory', 'Mid Practical', 'Final Theory', 'Final Practical') NOT NULL,
+    MarksObtained DECIMAL(5,2) NOT NULL CHECK (MarksObtained >= 0 AND MarksObtained <= 100),
+    RecordedBy INT NOT NULL,                   
+    RecordedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Remarks VARCHAR(100) DEFAULT NULL,         
+    FOREIGN KEY (RegNo) REFERENCES Student(StudentRegNo)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (RecordedBy) REFERENCES Users(Id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Result (
+    ResultID INT AUTO_INCREMENT PRIMARY KEY,
+    RegNo VARCHAR(15) NOT NULL, 
+    CourseID INT NOT NULL,            
+    TotalMarks DECIMAL(5,2) NOT NULL CHECK (TotalMarks >= 0 AND TotalMarks <= 100),
+    Grade CHAR(2) NOT NULL,                
+    GradePoint DECIMAL(3,2) NOT NULL,          
+    Eligibility ENUM('Eligible', 'Not Eligible', 'Medical', 'Withheld') DEFAULT 'Eligible',
+    Status ENUM('Proper', 'Repeat', 'Suspended') DEFAULT 'Proper',
+    Semester VARCHAR(10) NOT NULL,          
+    RecordedBy INT NOT NULL, 
+    RecordedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (RegNo) REFERENCES Student(StudentRegNo)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (RecordedBy) REFERENCES Users(Id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+CREATE TABLE Eligibility (
+    EligibilityID INT AUTO_INCREMENT PRIMARY KEY,
+    RegNo VARCHAR(15) NOT NULL,                     -- From Student(StudentRegNo)
+    CourseID INT NOT NULL,                          -- From Course(CourseID)
+    AttendancePercentage DECIMAL(5,2) NOT NULL CHECK (AttendancePercentage >= 0 AND AttendancePercentage <= 100),
+    CAMarks DECIMAL(5,2) NOT NULL CHECK (CAMarks >= 0 AND CAMarks <= 100),
+    FinalEligibility ENUM('Eligible', 'Not Eligible', 'Medical', 'Withheld') DEFAULT 'Eligible',
+    EvaluatedBy INT NOT NULL,                       -- From Users(Id) (Lecturer/Dean/TO)
+    EvaluatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Remarks VARCHAR(100) DEFAULT NULL,              -- Optional notes
+    FOREIGN KEY (RegNo) REFERENCES Student(StudentRegNo)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (EvaluatedBy) REFERENCES Users(Id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+ALTER TABLE Course
+ADD COLUMN SessionType ENUM('Theory','Practical') NOT NULL
+AFTER TotalHours;
