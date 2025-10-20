@@ -1,32 +1,12 @@
 CREATE DATABASE university;
 
-USE university;
+USE university
 
-CREATE TABLE Student (  
-    UserID INT,
-    StudentRegNo VARCHAR(15),
-    Batch VARCHAR(10)   
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
-        ON DELETE CASCADE ON UPDATE CASCADE,
+CREATE TABLE Department (
+    DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
+    DeptCode VARCHAR(10) UNIQUE NOT NULL,
+    DeptName VARCHAR(100) NOT NULL
 );
-
-CREATE TABLE Lecturer (
-    UserID INT,
-    StaffCode VARCHAR(10) UNIQUE NOT NULL,
-    Role ENUM('Lecturer', 'Dean') DEFAULT 'Lecturer',
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    
-);
-
-CREATE TABLE TechnicalOfficer (
-    UserID INT,
-    TOID INT AUTO_INCREMENT PRIMARY KEY,
-    Role ENUM('TO') DEFAULT 'TO',
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-);
-
 
 CREATE TABLE Users (
     Id INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,13 +26,29 @@ CREATE TABLE Users (
 );
 
 
-CREATE TABLE Department (
-    DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
-    DeptCode VARCHAR(10) UNIQUE NOT NULL,
-    DeptName VARCHAR(100) NOT NULL,
+CREATE TABLE Student (  
+    UserID INT,
+    StudentRegNo VARCHAR(15),
+    Batch VARCHAR(10),
+    FOREIGN KEY (UserID) REFERENCES Users(Id)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE Lecturer (
+    UserID INT,
+    StaffCode VARCHAR(10) UNIQUE NOT NULL,
+    Role ENUM('Lecturer', 'Dean') DEFAULT 'Lecturer',
+    FOREIGN KEY (UserID) REFERENCES Users(Id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
 
+CREATE TABLE TechnicalOfficer (
+    UserID INT,
+    TOID INT AUTO_INCREMENT PRIMARY KEY,
+    Role ENUM('TO') DEFAULT 'TO',
+    FOREIGN KEY (UserID) REFERENCES Users(Id)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 CREATE TABLE Course (
     CourseID INT AUTO_INCREMENT PRIMARY KEY,
@@ -61,8 +57,10 @@ CREATE TABLE Course (
     Credits INT NOT NULL,
     TotalHours INT NOT NULL,
     DepartmentID INT NOT NULL,
-    LecturerID INT NOT NULL,
+    LecturerID INT NOT NULL
 );
+
+
 CREATE TABLE Lecture (
     LectureID INT AUTO_INCREMENT PRIMARY KEY,
     CourseID INT NOT NULL,
