@@ -142,3 +142,7 @@ CREATE TABLE Eligibility (
 ALTER TABLE Course
 ADD COLUMN SessionType ENUM('Theory','Practical') NOT NULL
 AFTER TotalHours;
+
+
+ALTER TABLE Course
+RENAME COLUMN LecturerID TO LecturerInChargeID;
