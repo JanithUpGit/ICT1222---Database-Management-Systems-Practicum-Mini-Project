@@ -12,6 +12,7 @@ CREATE TABLE Users (
     Id INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
+     Role ENUM('Admin', 'Dean', 'Lecturer', 'TO', 'Student') NOT NULL,
     Dob DATE NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
     Phone VARCHAR(15) UNIQUE NOT NULL,
