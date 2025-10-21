@@ -109,3 +109,105 @@ VALUES
 
 
 
+-- ==================== ENGLISH II (CourseID = 1) ====================
+INSERT INTO Marks (RegNo, CourseID, ExamType, MarksObtained, RecordedBy, Remarks)
+VALUES
+('ICT2020-001', 1, 'Quiz', 80.00, 66, 'Good vocabulary'),
+('ICT2020-001', 1, 'Assessment', 85.00, 66, 'Fluent writing'),
+('ICT2020-001', 1, 'Final Theory', 88.00, 66, 'Excellent grammar'),
+
+('ICT2020-002', 1, 'Quiz', 70.00, 66, 'Average listening'),
+('ICT2020-002', 1, 'Assessment', 68.00, 66, 'Needs improvement'),
+('ICT2020-002', 1, 'Final Theory', 72.00, 66, 'Good progress'),
+
+('ICT2019-011', 1, 'Quiz', 60.00, 66, 'Repeat student'),
+('ICT2019-011', 1, 'Assessment', 65.00, 66, 'Improved'),
+('ICT2019-011', 1, 'Final Theory', 70.00, 66, 'Satisfactory');
+
+-- ==================== DATABASE MANAGEMENT SYSTEMS (CourseID = 2) ====================
+INSERT INTO Marks (RegNo, CourseID, ExamType, MarksObtained, RecordedBy, Remarks)
+VALUES
+('ICT2020-001', 2, 'Quiz', 85.00, 67, 'Strong SQL knowledge'),
+('ICT2020-001', 2, 'Assessment', 80.00, 67, 'Good normalization'),
+('ICT2020-001', 2, 'Mid Theory', 82.00, 67, 'Solid ERD understanding'),
+('ICT2020-001', 2, 'Final Theory', 88.00, 67, 'Excellent conceptual clarity'),
+
+('ICT2020-002', 2, 'Quiz', 60.00, 67, 'Weak joins'),
+('ICT2020-002', 2, 'Assessment', 65.00, 67, 'Improved query skills'),
+('ICT2020-002', 2, 'Mid Theory', 70.00, 67, 'Fair attempt'),
+('ICT2020-002', 2, 'Final Theory', 74.00, 67, 'Satisfactory'),
+
+('ICT2020-003', 2, 'Quiz', 92.00, 67, 'Excellent performance'),
+('ICT2020-003', 2, 'Assessment', 90.00, 67, 'Outstanding normalization'),
+('ICT2020-003', 2, 'Mid Theory', 88.00, 67, 'Strong ERD'),
+('ICT2020-003', 2, 'Final Theory', 94.00, 67, 'Brilliant'),
+
+('ICT2019-012', 2, 'Quiz', 68.00, 67, 'Repeat attempt'),
+('ICT2019-012', 2, 'Assessment', 65.00, 67, 'Average repeat'),
+('ICT2019-012', 2, 'Mid Theory', 72.00, 67, 'Improved'),
+('ICT2019-012', 2, 'Final Theory', 75.00, 67, 'Eligible');
+
+-- ==================== DBMS PRACTICUM (CourseID = 3) ====================
+INSERT INTO Marks (RegNo, CourseID, ExamType, MarksObtained, RecordedBy, Remarks)
+VALUES
+('ICT2020-001', 3, 'Assessment', 84.00, 68, 'Excellent design'),
+('ICT2020-001', 3, 'Mid Practical', 82.00, 68, 'Clean queries'),
+('ICT2020-001', 3, 'Final Practical', 90.00, 68, 'Project well executed'),
+
+('ICT2020-002', 3, 'Assessment', 68.00, 68, 'Basic structure'),
+('ICT2020-002', 3, 'Mid Practical', 65.00, 68, 'Needs optimization'),
+('ICT2020-002', 3, 'Final Practical', 70.00, 68, 'Average performance'),
+
+('ICT2020-003', 3, 'Assessment', 88.00, 68, 'Well documented'),
+('ICT2020-003', 3, 'Mid Practical', 90.00, 68, 'Flawless execution'),
+('ICT2020-003', 3, 'Final Practical', 95.00, 68, 'Excellent database'),
+
+('ICT2019-013', 3, 'Assessment', 65.00, 68, 'Repeat attempt'),
+('ICT2019-013', 3, 'Mid Practical', 68.00, 68, 'Improved'),
+('ICT2019-013', 3, 'Final Practical', 72.00, 68, 'Eligible');
+
+-- ==================== SERVER SIDE WEB DEVELOPMENT (CourseID = 4) ====================
+INSERT INTO Marks (RegNo, CourseID, ExamType, MarksObtained, RecordedBy, Remarks)
+VALUES
+('ICT2020-001', 4, 'Quiz', 78.00, 69, 'Good understanding of PHP'),
+('ICT2020-001', 4, 'Assessment', 82.00, 69, 'Clean server logic'),
+('ICT2020-001', 4, 'Mid Practical', 85.00, 69, 'Functional project'),
+('ICT2020-001', 4, 'Final Practical', 90.00, 69, 'Excellent full-stack'),
+
+('ICT2020-002', 4, 'Quiz', 65.00, 69, 'Fair logic understanding'),
+('ICT2020-002', 4, 'Assessment', 70.00, 69, 'Satisfactory'),
+('ICT2020-002', 4, 'Mid Practical', 72.00, 69, 'Needs improvement'),
+('ICT2020-002', 4, 'Final Practical', 75.00, 69, 'Good completion'),
+
+('ICT2020-003', 4, 'Quiz', 90.00, 69, 'Excellent web skills'),
+('ICT2020-003', 4, 'Assessment', 92.00, 69, 'Outstanding backend'),
+('ICT2020-003', 4, 'Mid Practical', 94.00, 69, 'Well structured'),
+('ICT2020-003', 4, 'Final Practical', 96.00, 69, 'Top project'),
+
+('ICT2019-014', 4, 'Quiz', 70.00, 69, 'Repeat student'),
+('ICT2019-014', 4, 'Assessment', 68.00, 69, 'Improved'),
+('ICT2019-014', 4, 'Mid Practical', 72.00, 69, 'Good attempt'),
+('ICT2019-014', 4, 'Final Practical', 74.00, 69, 'Eligible');
+
+-- ==================== COMPUTER ARCHITECTURE (CourseID = 5) ====================
+INSERT INTO Marks (RegNo, CourseID, ExamType, MarksObtained, RecordedBy, Remarks)
+VALUES
+('ICT2020-001', 5, 'Quiz', 75.00, 70, 'Understands fundamentals'),
+('ICT2020-001', 5, 'Assessment', 80.00, 70, 'Good CPU concepts'),
+('ICT2020-001', 5, 'Mid Theory', 78.00, 70, 'Solid performance'),
+('ICT2020-001', 5, 'Final Theory', 85.00, 70, 'Excellent grasp'),
+
+('ICT2020-002', 5, 'Quiz', 60.00, 70, 'Basic logic circuits'),
+('ICT2020-002', 5, 'Assessment', 65.00, 70, 'Average work'),
+('ICT2020-002', 5, 'Mid Theory', 68.00, 70, 'Acceptable'),
+('ICT2020-002', 5, 'Final Theory', 72.00, 70, 'Improved'),
+
+('ICT2020-003', 5, 'Quiz', 88.00, 70, 'Very good'),
+('ICT2020-003', 5, 'Assessment', 92.00, 70, 'Excellent understanding'),
+('ICT2020-003', 5, 'Mid Theory', 90.00, 70, 'Strong knowledge'),
+('ICT2020-003', 5, 'Final Theory', 94.00, 70, 'Top performer'),
+
+('ICT2019-015', 5, 'Quiz', 72.00, 70, 'Repeat attempt'),
+('ICT2019-015', 5, 'Assessment', 70.00, 70, 'Fair'),
+('ICT2019-015', 5, 'Mid Theory', 74.00, 70, 'Good repeat'),
+('ICT2019-015', 5, 'Final Theory', 76.00, 70, 'Eligible');
