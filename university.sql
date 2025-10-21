@@ -191,3 +191,89 @@ CREATE TABLE Eligibility (
 
 
 
+
+INSERT INTO Course 
+(CourseCode, CourseName, Credits, TotalHours, SessionType, DepartmentID, LecturerInChargeID)
+VALUES
+('ENG1222', 'English II', 2, 30, 'Theory', 4, 66),
+('ICT1212', 'Database Management Systems', 3, 45, 'Both', 1, 67),
+('ICT1222', 'Database Management Systems Practicum', 2, 60, 'Practical', 1, 68),
+('ICT1233', 'Server Side Web Development', 3, 45, 'Both', 1, 69),
+('ICT1242', 'Computer Architecture', 3, 45, 'Both', 1, 70),
+('ICT1253', 'Computer Networks', 3, 45, 'Both', 1, 67),
+('TCS1212', 'Fundamentals of Management', 2, 30, 'Theory', 4, 69),
+('TMS1233', 'Discrete Mathematics', 3, 45, 'Theory', 4, 70);
+
+-- Server Side Web Development (CourseID = 4)
+INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours, SessionType) VALUES
+(4, 69, '2025-08-04', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-08-04', '13:00:00', 2.00, 'Theory'),
+(4, 69, '2025-08-11', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-08-11', '14:00:00', 2.00, 'Theory'),
+(4, 69, '2025-08-18', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-08-18', '14:00:00', 2.00, 'Theory'),
+(4, 69, '2025-08-25', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-08-25', '14:00:00', 2.00, 'Theory'),
+(4, 69, '2025-09-01', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-09-01', '14:00:00', 2.00, 'Theory'),
+(4, 69, '2025-09-08', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-09-08', '14:00:00', 2.00, 'Theory'),
+(4, 69, '2025-09-15', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-09-15', '14:00:00', 2.00, 'Theory'),
+(4, 69, '2025-09-22', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-09-22', '14:00:00', 2.00, 'Theory'),
+(4, 69, '2025-10-13', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-10-13', '14:00:00', 2.00, 'Theory');
+
+-- English II (CourseID = 1)
+INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours, SessionType) VALUES
+(1, 66, '2025-08-15', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-08-22', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-08-29', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-09-12', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-09-19', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-09-26', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-10-10', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-10-17', '09:00:00', 2.00, 'Theory');
+
+-- Database Management Systems (CourseID = 2)
+INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours, SessionType) VALUES
+(2, 67, '2025-08-07', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-08-14', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-08-21', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-08-28', '08:00:00', 2.00, 'Theory'),
+(2, 67, '2025-09-04', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-09-11', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-09-18', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-09-25', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-10-09', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-10-16', '09:00:00', 2.00, 'Theory');
+
+-- DBMS Practicum (CourseID = 3)
+INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours, SessionType) VALUES
+(3, 68, '2025-08-07', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-08-07', '14:00:00', 2.00, 'Practical'),
+(3, 68, '2025-08-14', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-08-14', '14:00:00', 2.00, 'Practical'),
+(3, 68, '2025-08-21', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-08-21', '14:00:00', 2.00, 'Practical'),
+(3, 68, '2025-08-28', '10:00:00', 2.00, 'Practical'),
+(3, 68, '2025-08-28', '13:00:00', 2.00, 'Practical'),
+(3, 68, '2025-09-04', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-09-04', '14:00:00', 2.00, 'Practical'),
+(3, 68, '2025-09-11', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-09-11', '13:00:00', 2.00, 'Practical'),
+(3, 68, '2025-09-18', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-09-18', '14:00:00', 2.00, 'Practical'),
+(3, 68, '2025-09-25', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-09-25', '14:00:00', 2.00, 'Practical'),
+(3, 68, '2025-10-09', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-10-09', '14:00:00', 2.00, 'Practical'),
+(3, 68, '2025-10-16', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-10-16', '14:00:00', 2.00, 'Practical');
+
+
+
+
+
+
