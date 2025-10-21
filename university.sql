@@ -223,7 +223,15 @@ INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours
 (4, 69, '2025-09-22', '09:00:00', 2.00, 'Practical'),
 (4, 69, '2025-09-22', '14:00:00', 2.00, 'Theory'),
 (4, 69, '2025-10-13', '09:00:00', 2.00, 'Practical'),
-(4, 69, '2025-10-13', '14:00:00', 2.00, 'Theory');
+(4, 69, '2025-10-13', '14:00:00', 2.00, 'Theory')
+(4, 69, '2025-10-20', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-10-20', '14:00:00', 2.00, 'Theory'),
+(4, 69, '2025-10-27', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-10-27', '14:00:00', 2.00, 'Theory'),
+(4, 69, '2025-11-03', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-11-03', '14:00:00', 2.00, 'Theory'),
+(4, 69, '2025-11-10', '09:00:00', 2.00, 'Practical'),
+(4, 69, '2025-11-10', '14:00:00', 2.00, 'Theory');
 
 -- English II (CourseID = 1)
 INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours, SessionType) VALUES
@@ -234,7 +242,12 @@ INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours
 (1, 66, '2025-09-19', '13:00:00', 2.00, 'Theory'),
 (1, 66, '2025-09-26', '13:00:00', 2.00, 'Theory'),
 (1, 66, '2025-10-10', '13:00:00', 2.00, 'Theory'),
-(1, 66, '2025-10-17', '09:00:00', 2.00, 'Theory');
+(1, 66, '2025-10-17', '09:00:00', 2.00, 'Theory')
+(1, 66, '2025-10-24', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-10-31', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-11-07', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-11-14', '13:00:00', 2.00, 'Theory'),
+(1, 66, '2025-11-21', '13:00:00', 2.00, 'Theory');
 
 -- Database Management Systems (CourseID = 2)
 INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours, SessionType) VALUES
@@ -247,7 +260,12 @@ INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours
 (2, 67, '2025-09-18', '09:00:00', 2.00, 'Theory'),
 (2, 67, '2025-09-25', '09:00:00', 2.00, 'Theory'),
 (2, 67, '2025-10-09', '09:00:00', 2.00, 'Theory'),
-(2, 67, '2025-10-16', '09:00:00', 2.00, 'Theory');
+(2, 67, '2025-10-16', '09:00:00', 2.00, 'Theory')
+(2, 67, '2025-10-23', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-10-30', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-11-06', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-11-13', '09:00:00', 2.00, 'Theory'),
+(2, 67, '2025-11-20', '09:00:00', 2.00, 'Theory');
 
 -- DBMS Practicum (CourseID = 3)
 INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours, SessionType) VALUES
@@ -270,7 +288,13 @@ INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours
 (3, 68, '2025-10-09', '11:00:00', 2.00, 'Practical'),
 (3, 68, '2025-10-09', '14:00:00', 2.00, 'Practical'),
 (3, 68, '2025-10-16', '11:00:00', 2.00, 'Practical'),
-(3, 68, '2025-10-16', '14:00:00', 2.00, 'Practical');
+(3, 68, '2025-10-16', '14:00:00', 2.00, 'Practical')
+(3, 68, '2025-10-23', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-10-23', '14:00:00', 2.00, 'Practical'),
+(3, 68, '2025-10-30', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-10-30', '14:00:00', 2.00, 'Practical'),
+(3, 68, '2025-11-06', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-11-06', '14:00:00', 2.00, 'Practical');
 
 
 
