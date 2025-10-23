@@ -70,10 +70,6 @@ VALUES
 (88, 'TG2019-013', '2019'),
 (89, 'TG2019-014', '2019'),
 (90, 'TG2019-015', '2019');
-<<<<<<< HEAD
-=======
-
->>>>>>> methum
 
 
 INSERT INTO Lecturer (UserID, StaffCode, Role)
