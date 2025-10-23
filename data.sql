@@ -51,7 +51,7 @@ VALUES
 
 
 
--- ...existing code...
+
 INSERT INTO Student (UserID, StudentRegNo, Batch)
 VALUES
 (76, 'TG2020-001', '2020'),
@@ -70,6 +70,10 @@ VALUES
 (88, 'TG2019-013', '2019'),
 (89, 'TG2019-014', '2019'),
 (90, 'TG2019-015', '2019');
+<<<<<<< HEAD
+=======
+
+>>>>>>> methum
 
 
 INSERT INTO Lecturer (UserID, StaffCode, Role)
