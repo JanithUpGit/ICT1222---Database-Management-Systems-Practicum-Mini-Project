@@ -111,7 +111,8 @@ VALUES
 
 
 
--- marks table data insert
+-- insert data marks table
+
 
 
 -- ==================== ENGLISH II (CourseID = 1) ====================
@@ -416,3 +417,186 @@ INSERT INTO Marks (RegNo, CourseID, ExamType, MarksObtained, RecordedBy, Remarks
 ('TG2019-011', 5, 'Assessment', 68.00, 70, 'Improved'),
 ('TG2019-011', 5, 'Mid Theory', 70.00, 70, 'Fair'),
 ('TG2019-011', 5, 'Final Theory', 72.00, 70, 'Eligible');
+
+
+-- ==================== COMPUTER NETWORKS (CourseID = 6) ====================
+INSERT INTO Marks (RegNo, CourseID, ExamType, MarksObtained, RecordedBy, Remarks) VALUES
+('TG2020-001', 6, 'Quiz', 82.00, 67, 'Understands networking layers'),
+('TG2020-001', 6, 'Assessment', 85.00, 67, 'Good IP addressing'),
+('TG2020-001', 6, 'Mid Theory', 84.00, 67, 'Solid knowledge'),
+('TG2020-001', 6, 'Final Theory', 88.00, 67, 'Excellent'),
+
+('TG2020-002', 6, 'Quiz', 70.00, 67, 'Average performance'),
+('TG2020-002', 6, 'Assessment', 72.00, 67, 'Improving'),
+('TG2020-002', 6, 'Mid Theory', 74.00, 67, 'Fair understanding'),
+('TG2020-002', 6, 'Final Theory', 78.00, 67, 'Good improvement'),
+
+('TG2020-003', 6, 'Quiz', 92.00, 67, 'Excellent'),
+('TG2020-003', 6, 'Assessment', 94.00, 67, 'Outstanding'),
+('TG2020-003', 6, 'Mid Theory', 90.00, 67, 'Very strong'),
+('TG2020-003', 6, 'Final Theory', 96.00, 67, 'Top performer'),
+
+('TG2020-004', 6, 'Quiz', 74.00, 67, 'Good base'),
+('TG2020-004', 6, 'Assessment', 76.00, 67, 'Fair'),
+('TG2020-004', 6, 'Mid Theory', 78.00, 67, 'Improved'),
+('TG2020-004', 6, 'Final Theory', 82.00, 67, 'Good result'),
+
+('TG2020-005', 6, 'Quiz', 96.00, 67, 'Excellent'),
+('TG2020-005', 6, 'Assessment', 94.00, 67, 'Brilliant'),
+('TG2020-005', 6, 'Mid Theory', 96.00, 67, 'Great grasp'),
+('TG2020-005', 6, 'Final Theory', 98.00, 67, 'Top student'),
+
+('TG2020-006', 6, 'Quiz', 80.00, 67, 'Good logic'),
+('TG2020-006', 6, 'Assessment', 82.00, 67, 'Consistent'),
+('TG2020-006', 6, 'Mid Theory', 84.00, 67, 'Solid work'),
+('TG2020-006', 6, 'Final Theory', 88.00, 67, 'Excellent'),
+
+('TG2020-007', 6, 'Quiz', 68.00, 67, 'Needs practice'),
+('TG2020-007', 6, 'Assessment', 70.00, 67, 'Improving'),
+('TG2020-007', 6, 'Mid Theory', 72.00, 67, 'Satisfactory'),
+('TG2020-007', 6, 'Final Theory', 74.00, 67, 'Fair result'),
+
+('TG2020-008', 6, 'Quiz', 88.00, 67, 'Excellent'),
+('TG2020-008', 6, 'Assessment', 90.00, 67, 'Very good'),
+('TG2020-008', 6, 'Mid Theory', 92.00, 67, 'Strong grasp'),
+('TG2020-008', 6, 'Final Theory', 94.00, 67, 'Top marks'),
+
+('TG2020-009', 6, 'Quiz', 82.00, 67, 'Good performance'),
+('TG2020-009', 6, 'Assessment', 84.00, 67, 'Solid'),
+('TG2020-009', 6, 'Mid Theory', 86.00, 67, 'Well prepared'),
+('TG2020-009', 6, 'Final Theory', 88.00, 67, 'Excellent'),
+
+('TG2020-010', 6, 'Quiz', 74.00, 67, 'Average'),
+('TG2020-010', 6, 'Assessment', 76.00, 67, 'Improving'),
+('TG2020-010', 6, 'Mid Theory', 78.00, 67, 'Fair'),
+('TG2020-010', 6, 'Final Theory', 80.00, 67, 'Good'),
+
+('TG2019-011', 6, 'Quiz', 65.00, 67, 'Repeat'),
+('TG2019-011', 6, 'Assessment', 68.00, 67, 'Improved'),
+('TG2019-011', 6, 'Mid Theory', 70.00, 67, 'Acceptable'),
+('TG2019-011', 6, 'Final Theory', 72.00, 67, 'Eligible'),
+
+('TG2019-012', 6, 'Quiz', 62.00, 67, 'Repeat attempt'),
+('TG2019-012', 6, 'Assessment', 66.00, 67, 'Improved'),
+('TG2019-012', 6, 'Mid Theory', 68.00, 67, 'Fair'),
+('TG2019-012', 6, 'Final Theory', 70.00, 67, 'Eligible'),
+
+('TG2019-013', 6, 'Quiz', 64.00, 67, 'Repeat student'),
+('TG2019-013', 6, 'Assessment', 66.00, 67, 'Better performance'),
+('TG2019-013', 6, 'Mid Theory', 68.00, 67, 'Acceptable'),
+('TG2019-013', 6, 'Final Theory', 70.00, 67, 'Eligible'),
+
+('TG2019-014', 6, 'Quiz', 65.00, 67, 'Repeat improved'),
+('TG2019-014', 6, 'Assessment', 68.00, 67, 'Improved'),
+('TG2019-014', 6, 'Mid Theory', 70.00, 67, 'Good repeat'),
+('TG2019-014', 6, 'Final Theory', 72.00, 67, 'Eligible'),
+
+('TG2019-015', 6, 'Quiz', 60.00, 67, 'Repeat'),
+('TG2019-015', 6, 'Assessment', 64.00, 67, 'Improving'),
+('TG2019-015', 6, 'Mid Theory', 66.00, 67, 'Fair'),
+('TG2019-015', 6, 'Final Theory', 68.00, 67, 'Eligible');
+
+
+-- ==================== FUNDAMENTALS OF MANAGEMENT (CourseID = 7) ====================
+INSERT INTO Marks (RegNo, CourseID, ExamType, MarksObtained, RecordedBy, Remarks) VALUES
+('TG2020-001', 7, 'Quiz', 84.00, 69, 'Good management concepts'),
+('TG2020-001', 7, 'Assessment', 86.00, 69, 'Strong analytical skills'),
+('TG2020-001', 7, 'Final Theory', 88.00, 69, 'Excellent understanding'),
+
+('TG2020-002', 7, 'Quiz', 72.00, 69, 'Fair performance'),
+('TG2020-002', 7, 'Assessment', 74.00, 69, 'Improving'),
+('TG2020-002', 7, 'Final Theory', 78.00, 69, 'Good effort'),
+
+('TG2020-003', 7, 'Quiz', 90.00, 69, 'Excellent'),
+('TG2020-003', 7, 'Assessment', 92.00, 69, 'Strong leadership analysis'),
+('TG2020-003', 7, 'Final Theory', 94.00, 69, 'Outstanding'),
+
+('TG2020-004', 7, 'Quiz', 76.00, 69, 'Good'),
+('TG2020-004', 7, 'Assessment', 78.00, 69, 'Solid'),
+('TG2020-004', 7, 'Final Theory', 80.00, 69, 'Improved understanding'),
+
+('TG2020-005', 7, 'Quiz', 96.00, 69, 'Excellent participation'),
+('TG2020-005', 7, 'Assessment', 94.00, 69, 'Brilliant report'),
+('TG2020-005', 7, 'Final Theory', 98.00, 69, 'Top performer'),
+
+('TG2020-006', 7, 'Quiz', 80.00, 69, 'Good logic'),
+('TG2020-006', 7, 'Assessment', 82.00, 69, 'Consistent work'),
+('TG2020-006', 7, 'Final Theory', 86.00, 69, 'Excellent result'),
+
+('TG2020-007', 7, 'Quiz', 70.00, 69, 'Average'),
+('TG2020-007', 7, 'Assessment', 72.00, 69, 'Improved'),
+('TG2020-007', 7, 'Final Theory', 74.00, 69, 'Fair result'),
+
+('TG2020-008', 7, 'Quiz', 88.00, 69, 'Excellent comprehension'),
+('TG2020-008', 7, 'Assessment', 90.00, 69, 'Good analytical view'),
+('TG2020-008', 7, 'Final Theory', 92.00, 69, 'Outstanding'),
+
+('TG2020-009', 7, 'Quiz', 82.00, 69, 'Good performance'),
+('TG2020-009', 7, 'Assessment', 84.00, 69, 'Solid effort'),
+('TG2020-009', 7, 'Final Theory', 88.00, 69, 'Excellent'),
+
+('TG2020-010', 7, 'Quiz', 74.00, 69, 'Fair'),
+('TG2020-010', 7, 'Assessment', 76.00, 69, 'Improving'),
+('TG2020-010', 7, 'Final Theory', 80.00, 69, 'Good result'),
+
+('TG2019-011', 7, 'Quiz', 65.00, 69, 'Repeat'),
+('TG2019-011', 7, 'Assessment', 68.00, 69, 'Improved'),
+('TG2019-011', 7, 'Final Theory', 70.00, 69, 'Eligible');
+
+
+-- ==================== DISCRETE MATHEMATICS (CourseID = 8) ====================
+INSERT INTO Marks (RegNo, CourseID, ExamType, MarksObtained, RecordedBy, Remarks) VALUES
+('TG2020-001', 8, 'Quiz', 85.00, 70, 'Strong logic'),
+('TG2020-001', 8, 'Assessment', 88.00, 70, 'Excellent reasoning'),
+('TG2020-001', 8, 'Mid Theory', 90.00, 70, 'Solid understanding'),
+('TG2020-001', 8, 'Final Theory', 92.00, 70, 'Outstanding'),
+
+('TG2020-002', 8, 'Quiz', 72.00, 70, 'Fair effort'),
+('TG2020-002', 8, 'Assessment', 74.00, 70, 'Improved'),
+('TG2020-002', 8, 'Mid Theory', 76.00, 70, 'Good'),
+('TG2020-002', 8, 'Final Theory', 78.00, 70, 'Better result'),
+
+('TG2020-003', 8, 'Quiz', 92.00, 70, 'Excellent logic'),
+('TG2020-003', 8, 'Assessment', 94.00, 70, 'Great proof work'),
+('TG2020-003', 8, 'Mid Theory', 96.00, 70, 'Brilliant'),
+('TG2020-003', 8, 'Final Theory', 98.00, 70, 'Top performer'),
+
+('TG2020-004', 8, 'Quiz', 78.00, 70, 'Good reasoning'),
+('TG2020-004', 8, 'Assessment', 80.00, 70, 'Solid work'),
+('TG2020-004', 8, 'Mid Theory', 82.00, 70, 'Well prepared'),
+('TG2020-004', 8, 'Final Theory', 84.00, 70, 'Good result'),
+
+('TG2020-005', 8, 'Quiz', 96.00, 70, 'Outstanding logic'),
+('TG2020-005', 8, 'Assessment', 98.00, 70, 'Brilliant work'),
+('TG2020-005', 8, 'Mid Theory', 96.00, 70, 'Excellent'),
+('TG2020-005', 8, 'Final Theory', 99.00, 70, 'Top marks'),
+
+('TG2020-006', 8, 'Quiz', 80.00, 70, 'Good effort'),
+('TG2020-006', 8, 'Assessment', 82.00, 70, 'Consistent'),
+('TG2020-006', 8, 'Mid Theory', 84.00, 70, 'Strong logic'),
+('TG2020-006', 8, 'Final Theory', 88.00, 70, 'Excellent'),
+
+('TG2020-007', 8, 'Quiz', 70.00, 70, 'Basic'),
+('TG2020-007', 8, 'Assessment', 72.00, 70, 'Improving'),
+('TG2020-007', 8, 'Mid Theory', 74.00, 70, 'Fair'),
+('TG2020-007', 8, 'Final Theory', 76.00, 70, 'Satisfactory'),
+
+('TG2020-008', 8, 'Quiz', 90.00, 70, 'Excellent'),
+('TG2020-008', 8, 'Assessment', 92.00, 70, 'Strong reasoning'),
+('TG2020-008', 8, 'Mid Theory', 94.00, 70, 'Well structured'),
+('TG2020-008', 8, 'Final Theory', 96.00, 70, 'Top performer'),
+
+('TG2020-009', 8, 'Quiz', 84.00, 70, 'Good logic'),
+('TG2020-009', 8, 'Assessment', 86.00, 70, 'Consistent'),
+('TG2020-009', 8, 'Mid Theory', 88.00, 70, 'Strong'),
+('TG2020-009', 8, 'Final Theory', 90.00, 70, 'Excellent'),
+
+('TG2020-010', 8, 'Quiz', 74.00, 70, 'Average'),
+('TG2020-010', 8, 'Assessment', 76.00, 70, 'Improving'),
+('TG2020-010', 8, 'Mid Theory', 78.00, 70, 'Fair'),
+('TG2020-010', 8, 'Final Theory', 80.00, 70, 'Good'),
+
+('TG2019-011', 8, 'Quiz', 65.00, 70, 'Repeat'),
+('TG2019-011', 8, 'Assessment', 68.00, 70, 'Improved'),
+('TG2019-011', 8, 'Mid Theory', 70.00, 70, 'Fair'),
+('TG2019-011', 8, 'Final Theory', 72.00, 70, 'Eligible');
