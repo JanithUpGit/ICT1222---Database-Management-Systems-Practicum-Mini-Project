@@ -114,22 +114,24 @@ CREATE TABLE Marks (
     ExamType ENUM(
         'Quiz',
         'Assessment',
-        'Mid Theory',
-        'Mid Practical',
-        'Final Theory',
-        'Final Practical'
+        'MidExam',
+        'FinalExam'
     ) NOT NULL,
+    ExamCategory ENUM('Theory', 'Practical', 'Both') NOT NULL,
     MarksObtained DECIMAL(5, 2) NOT NULL CHECK (
         MarksObtained >= 0
         AND MarksObtained <= 100
     ),
     RecordedBy INT NOT NULL,
     RecordedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Remarks VARCHAR(100) DEFAULT NULL,
     FOREIGN KEY (RegNo) REFERENCES Student (StudentRegNo) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (RecordedBy) REFERENCES Users (Id) ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
+
+
+
+
 
 CREATE TABLE Result (
     ResultID INT AUTO_INCREMENT PRIMARY KEY,
