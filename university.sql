@@ -2,6 +2,26 @@ CREATE DATABASE university;
 
 USE university
 
+
+CREATE USER 'Admin'@'%' IDENTIFIED BY 'Admin@123';
+GRANT ALL PRIVILEGES ON university.* TO 'Admin'@'%' WITH GRANT OPTION;
+CREATE USER 'Dean'@'%' IDENTIFIED BY 'Dean@123';
+GRANT ALL PRIVILEGES ON university.* TO 'Dean'@'%';
+CREATE USER 'Lecturer'@'%' IDENTIFIED BY 'Lecturer@123';
+GRANT ALL PRIVILEGES ON university.* TO 'Lecturer'@'%';
+REVOKE CREATE USER ON *.* FROM 'Lecturer'@'%';
+CREATE USER 'TechnicalOfficer'@'%' IDENTIFIED BY 'Tech@123';
+GRANT SELECT, INSERT, UPDATE ON university.Attendance TO 'TechnicalOfficer'@'%';
+
+CREATE USER 'Student'@'%' IDENTIFIED BY 'Student@123';
+
+-- GRANT SELECT ON university.final_attendance_view TO 'Student'@'%';
+-- GRANT SELECT ON university.final_grades_view TO 'Student'@'%';
+
+FLUSH PRIVILEGES;
+
+
+
 CREATE TABLE Department (
     DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
     DeptCode VARCHAR(10) UNIQUE NOT NULL,
@@ -12,6 +32,7 @@ CREATE TABLE Users (
     Id INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
+     Role ENUM('Admin', 'Dean', 'Lecturer', 'TO', 'Student') NOT NULL,
     Dob DATE NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
     Phone VARCHAR(15) UNIQUE NOT NULL,
@@ -93,18 +114,16 @@ CREATE TABLE Marks (
     ExamType ENUM(
         'Quiz',
         'Assessment',
-        'Mid Theory',
-        'Mid Practical',
-        'Final Theory',
-        'Final Practical'
+        'MidExam',
+        'FinalExam'
     ) NOT NULL,
+    ExamCategory ENUM('Theory', 'Practical', 'Both') NOT NULL,
     MarksObtained DECIMAL(5, 2) NOT NULL CHECK (
         MarksObtained >= 0
         AND MarksObtained <= 100
     ),
     RecordedBy INT NOT NULL,
     RecordedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Remarks VARCHAR(100) DEFAULT NULL,
     FOREIGN KEY (RegNo) REFERENCES Student (StudentRegNo) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (RecordedBy) REFERENCES Users (Id) ON DELETE CASCADE ON UPDATE CASCADE
