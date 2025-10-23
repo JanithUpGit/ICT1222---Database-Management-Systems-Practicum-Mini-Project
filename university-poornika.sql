@@ -2,37 +2,16 @@ CREATE DATABASE university;
 
 USE university
 
-
-CREATE USER 'Admin'@'%' IDENTIFIED BY 'Admin@123';
-GRANT ALL PRIVILEGES ON university.* TO 'Admin'@'%' WITH GRANT OPTION;
-CREATE USER 'Dean'@'%' IDENTIFIED BY 'Dean@123';
-GRANT ALL PRIVILEGES ON university.* TO 'Dean'@'%';
-CREATE USER 'Lecturer'@'%' IDENTIFIED BY 'Lecturer@123';
-GRANT ALL PRIVILEGES ON university.* TO 'Lecturer'@'%';
-REVOKE CREATE USER ON *.* FROM 'Lecturer'@'%';
-CREATE USER 'TechnicalOfficer'@'%' IDENTIFIED BY 'Tech@123';
-GRANT SELECT, INSERT, UPDATE ON university.Attendance TO 'TechnicalOfficer'@'%';
-
-CREATE USER 'Student'@'%' IDENTIFIED BY 'Student@123';
-
--- GRANT SELECT ON university.final_attendance_view TO 'Student'@'%';
--- GRANT SELECT ON university.final_grades_view TO 'Student'@'%';
-
-FLUSH PRIVILEGES;
-
-
-
 CREATE TABLE Department (
     DepartmentID INT AUTO_INCREMENT PRIMARY KEY,
     DeptCode VARCHAR(10) UNIQUE NOT NULL,
     DeptName VARCHAR(100) NOT NULL
-);
+)
 
 CREATE TABLE Users (
     Id INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
-     Role ENUM('Admin', 'Dean', 'Lecturer', 'TO', 'Student') NOT NULL,
     Dob DATE NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
     Phone VARCHAR(15) UNIQUE NOT NULL,
@@ -43,28 +22,28 @@ CREATE TABLE Users (
     UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     Status ENUM('Active', 'Inactive') DEFAULT 'Active',
     FOREIGN KEY (DepartmentID) REFERENCES Department (DepartmentID) ON DELETE CASCADE ON UPDATE CASCADE
-);
+)
 
 CREATE TABLE Student (
     UserID INT,
     StudentRegNo VARCHAR(15) UNIQUE,
     Batch VARCHAR(10),
     FOREIGN KEY (UserID) REFERENCES Users (Id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+)
 
 CREATE TABLE Lecturer (
     UserID INT NOT NULL,
     StaffCode VARCHAR(10) UNIQUE NOT NULL,
     Role ENUM('Lecturer', 'Dean') DEFAULT 'Lecturer',
     FOREIGN KEY (UserID) REFERENCES Users (Id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+)
 
 CREATE TABLE TechnicalOfficer (
     UserID INT,
     TOID INT AUTO_INCREMENT PRIMARY KEY,
     Role ENUM('TO') DEFAULT 'TO',
     FOREIGN KEY (UserID) REFERENCES Users (Id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+)
 
 CREATE TABLE Course (
     CourseID INT AUTO_INCREMENT PRIMARY KEY,
@@ -77,7 +56,7 @@ CREATE TABLE Course (
     LecturerInChargeID INT,
     FOREIGN KEY (DepartmentID) REFERENCES Department (DepartmentID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (LecturerInChargeID) REFERENCES Lecturer (UserID) ON DELETE SET NULL ON UPDATE CASCADE
-);
+)
 
 CREATE TABLE Lecture (
     LectureID INT AUTO_INCREMENT PRIMARY KEY,
@@ -89,7 +68,7 @@ CREATE TABLE Lecture (
     SessionType ENUM('Theory', 'Practical') NOT NULL,
     FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (LecturerID) REFERENCES Lecturer (UserID) ON DELETE CASCADE ON UPDATE CASCADE
-);
+)
 
 CREATE TABLE Attendance (
     AttendanceID INT AUTO_INCREMENT PRIMARY KEY,
@@ -105,7 +84,7 @@ CREATE TABLE Attendance (
     FOREIGN KEY (RegNo) REFERENCES Student (StudentRegNo) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (LectureID) REFERENCES Lecture (LectureID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (RecordedBy) REFERENCES Users (Id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+)
 
 CREATE TABLE Marks (
     MarkID INT AUTO_INCREMENT PRIMARY KEY,
@@ -114,24 +93,22 @@ CREATE TABLE Marks (
     ExamType ENUM(
         'Quiz',
         'Assessment',
-        'MidExam',
-        'FinalExam'
+        'Mid Theory',
+        'Mid Practical',
+        'Final Theory',
+        'Final Practical'
     ) NOT NULL,
-    ExamCategory ENUM('Theory', 'Practical', 'Both') NOT NULL,
     MarksObtained DECIMAL(5, 2) NOT NULL CHECK (
         MarksObtained >= 0
         AND MarksObtained <= 100
     ),
     RecordedBy INT NOT NULL,
     RecordedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Remarks VARCHAR(100) DEFAULT NULL,
     FOREIGN KEY (RegNo) REFERENCES Student (StudentRegNo) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (RecordedBy) REFERENCES Users (Id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-
-
-
+)
 
 CREATE TABLE Result (
     ResultID INT AUTO_INCREMENT PRIMARY KEY,
@@ -160,7 +137,7 @@ CREATE TABLE Result (
     FOREIGN KEY (RegNo) REFERENCES Student (StudentRegNo) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (RecordedBy) REFERENCES Users (Id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+)
 
 CREATE TABLE Eligibility (
     EligibilityID INT AUTO_INCREMENT PRIMARY KEY,
@@ -186,6 +163,7 @@ CREATE TABLE Eligibility (
     FOREIGN KEY (RegNo) REFERENCES Student (StudentRegNo) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (EvaluatedBy) REFERENCES Users (Id) ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
+
 
 
