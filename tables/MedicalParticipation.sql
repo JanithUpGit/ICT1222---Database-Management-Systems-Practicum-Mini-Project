@@ -7,4 +7,3 @@ CREATE TABLE MedicalParticipation (
     FOREIGN KEY (LectureID) REFERENCES Lecture(LectureID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
-
