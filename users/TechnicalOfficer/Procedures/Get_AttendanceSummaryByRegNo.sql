@@ -1,11 +1,11 @@
 -- ==========================================================
 -- Procedure Name : Get_AttendanceSummaryByRegNo
--- Description    : Returns a summarized attendance report for a 
---                  specific student, showing total course hours, 
---                  attended hours (Present/Medical), and overall 
---                  attendance percentage for each course.
--- Author         : [Your Name]
--- Date           : [Current Date]
+-- Description    : Returns attendance summary for a given student
+--                  using View_StudentCourseAttendance:
+--                  (1) Per-course breakdown with eligibility
+--                  (2) Overall weighted totals across courses
+-- Author         : [janith Uthpala]
+-- Date           : [2025/10/24]
 -- ==========================================================
 
 DROP PROCEDURE IF EXISTS Get_AttendanceSummaryByRegNo;
@@ -15,25 +15,38 @@ CREATE PROCEDURE Get_AttendanceSummaryByRegNo(
     IN p_RegNo VARCHAR(15)
 )
 BEGIN
+    /* (1) Per-course breakdown */
     SELECT
+        StudentID,
+        StudentName,
         CourseID,
         CourseCode,
         CourseName,
-        SUM(DurationHours) AS TotalCourseHours,
-        SUM(CASE WHEN Status IN ('Present','Medical') THEN DurationHours ELSE 0 END) AS AttendedHours,
-        ROUND(
-            CASE WHEN SUM(DurationHours) > 0
-                 THEN SUM(CASE WHEN Status IN ('Present','Medical') THEN DurationHours ELSE 0 END)
-                      / SUM(DurationHours) * 100
-                 ELSE 0
-            END, 2
-        ) AS AttendancePercentage
-    FROM View_Attendance
+        TotalCourseHours,
+        AttendedHours,
+        AttendancePercentage,
+        Eligibility
+    FROM View_StudentCourseAttendance
     WHERE StudentID = p_RegNo
-    GROUP BY CourseID, CourseCode, CourseName
-    ORDER BY CourseID;
-END //
+    ORDER BY CourseCode, CourseID;
 
+    /* (2) Overall weighted summary across all courses */
+    SELECT
+        p_RegNo AS StudentID,
+        MAX(StudentName) AS StudentName,
+        IFNULL(SUM(TotalCourseHours), 0)  AS TotalHoursAllCourses,
+        IFNULL(SUM(AttendedHours), 0)     AS AttendedHoursAllCourses,
+        CASE 
+            WHEN IFNULL(SUM(TotalCourseHours), 0) > 0 THEN
+                ROUND(100 * SUM(AttendedHours) / SUM(TotalCourseHours), 2)
+            ELSE 0
+        END AS OverallAttendancePercentage,
+        SUM(CASE WHEN Eligibility = 'Eligible' THEN 1 ELSE 0 END) AS EligibleCourseCount,
+        COUNT(*) AS CourseCount
+    FROM View_StudentCourseAttendance
+    WHERE StudentID = p_RegNo;
+END //
 DELIMITER ;
+
 
 CALL Get_AttendanceSummaryByRegNo('TG2020-002');
