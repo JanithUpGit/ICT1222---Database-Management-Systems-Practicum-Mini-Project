@@ -1,5 +1,17 @@
 
-DROP VIEW IF EXISTS View_Attendance;
+-- ==========================================================
+-- View Name  : View_CourseAttendance
+-- Description: Displays detailed attendance records for each 
+--              lecture in every course. Includes course info, 
+--              lecture details, student registration number, 
+--              student name, attendance status, and the staff 
+--              member who recorded the attendance.
+-- Author     : [Your Name]
+-- Date       : [Current Date]
+-- ==========================================================
+
+
+DROP VIEW IF EXISTS View_CourseAttendance;
 
 CREATE OR REPLACE VIEW View_Attendance AS
 SELECT
@@ -33,6 +45,5 @@ JOIN Student   S ON S.StudentRegNo = A.RegNo
 JOIN Users     U ON U.Id        = S.UserID
 LEFT JOIN Users R ON R.Id       = A.RecordedBy
 ORDER BY C.CourseID, L.LectureDate, S.StudentRegNo;
-
 
 SELECT * FROM View_Attendance;
