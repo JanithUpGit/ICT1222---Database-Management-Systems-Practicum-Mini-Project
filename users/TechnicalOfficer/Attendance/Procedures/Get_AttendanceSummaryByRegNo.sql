@@ -28,7 +28,7 @@ BEGIN
                  ELSE 0
             END, 2
         ) AS AttendancePercentage
-    FROM View_CourseAttendance
+    FROM View_Attendance
     WHERE StudentID = p_RegNo
     GROUP BY CourseID, CourseCode, CourseName
     ORDER BY CourseID;

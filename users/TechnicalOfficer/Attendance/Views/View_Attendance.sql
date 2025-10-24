@@ -1,7 +1,7 @@
 
-DROP VIEW IF EXISTS View_CourseAttendance;
+DROP VIEW IF EXISTS View_Attendance;
 
-CREATE OR REPLACE VIEW View_CourseAttendance AS
+CREATE OR REPLACE VIEW View_Attendance AS
 SELECT
     C.CourseID,
     C.CourseCode,
@@ -35,4 +35,4 @@ LEFT JOIN Users R ON R.Id       = A.RecordedBy
 ORDER BY C.CourseID, L.LectureDate, S.StudentRegNo;
 
 
-SELECT * FROM View_CourseAttendance;
+SELECT * FROM View_Attendance;

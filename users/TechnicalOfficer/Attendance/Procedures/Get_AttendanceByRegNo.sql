@@ -15,7 +15,7 @@ CREATE PROCEDURE Get_AttendanceByRegNo(
 )
 BEGIN
     SELECT *
-    FROM View_CourseAttendance
+    FROM View_Attendance
     WHERE StudentID = p_RegNo
     ORDER BY CourseID, LectureDate;
 END //

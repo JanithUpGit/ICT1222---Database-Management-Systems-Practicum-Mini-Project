@@ -17,7 +17,7 @@ CREATE PROCEDURE Get_AttendanceByDate(
 )
 BEGIN
     SELECT *
-    FROM View_CourseAttendance
+    FROM View_Attendance
     WHERE LectureDate BETWEEN p_DateFrom AND p_DateTo
       AND (p_CourseID IS NULL OR CourseID = p_CourseID)
     ORDER BY CourseID, LectureDate, StudentID;

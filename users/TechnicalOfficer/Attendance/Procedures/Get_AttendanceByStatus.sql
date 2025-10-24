@@ -29,7 +29,7 @@ BEGIN
         V.RecordedByName,
         M.MedicalID,
         M.ApprovalStatus
-    FROM View_CourseAttendance V
+    FROM View_Attendance V
     LEFT JOIN MedicalParticipation MP 
            ON MP.LectureID = V.LectureID
     LEFT JOIN Medicals M 

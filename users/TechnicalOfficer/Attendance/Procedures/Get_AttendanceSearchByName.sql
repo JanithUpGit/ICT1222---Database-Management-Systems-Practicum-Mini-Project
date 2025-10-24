@@ -15,7 +15,7 @@ CREATE PROCEDURE Get_AttendanceSearchByName(
 )
 BEGIN
     SELECT *
-    FROM View_CourseAttendance
+    FROM View_Attendance
     WHERE LOWER(StudentName) LIKE CONCAT('%', LOWER(p_Name), '%')
     ORDER BY CourseID, LectureDate, StudentID;
 END //
