@@ -1,0 +1,138 @@
+
+
+Admin (Full control + WITH GRANT OPTION)
+│
+├── Tables  → ALL PRIVILEGES
+│   ├── Department
+│   ├── Users
+│   ├── Student
+│   ├── Lecturer
+│   ├── TechnicalOfficer
+│   ├── Course
+│   ├── Lecture
+│   ├── Attendance
+│   ├── Medicals
+│   └── MedicalParticipation
+│
+├── Views  → SELECT
+│   ├── View_AllUsers
+│   ├── View_Students
+│   ├── View_Lectures
+│   ├── View_TechnicalOfficers
+│   ├── View_Admins
+│   ├── View_Dean
+│   ├── View_Attendance
+│   ├── View_StudentCourseAttendance
+│   ├── View_Medicals
+│   ├── View_CourseTotalHours
+│   ├── View_FinalCA_Eligibility
+│   ├── View_FinalStudentMarks_WithEligibility
+│   ├── View_GradePointCredit
+│   ├── View_StudentGradeReport
+│   └── View_StudentMarkSheet
+│
+└── Procedures  → EXECUTE ALL
+    
+    ├── Get_studentDetailsByID
+    ├── Get_AllUsers
+    ├── Get_UsersByDepartmentID 
+    ├── Get_UserById
+    ├── Get_AttendanceBy (courseId/courseCode/regNo/date/name/status)
+    ├── Get_medicalsBy (course/date/name/status)
+    ├── Get_StudentEligibilityReport
+    ├── Get_StudentMarkSheetFormatted
+    ├── Get_StudentGPAReport 
+    ├── Add_Medical
+    └── Update_MedicalApprovalByMedicalIDAndMStatus
+
+
+Dean 
+│
+├── Tables → C/R/U/D
+│   ├── Department
+│   ├── Users
+│   ├── Student
+│   ├── Lecturer
+│   ├── TechnicalOfficer
+│   ├── Course
+│   ├── Lecture
+│   ├── Attendance
+│   ├── Medicals
+│   └── MedicalParticipation
+│   
+│
+├── Views  → SELECT
+│   └── All Views
+│
+└── Procedures  → EXECUTE
+    └── All Views
+
+
+Lecturer
+│
+├── Tables → R
+│   ├── Department
+│   ├── Course
+│   ├── Lecture
+│
+├── Views  → SELECT
+│   ├── View_Attendance
+│   ├── View_StudentCourseAttendance
+│   ├── View_Students
+│   ├── View_Lectures
+│   ├── View_Medicals
+│   └── View_CourseTotalHours
+│
+└── Procedures  → EXECUTE
+    ├── CGPA_check
+    ├──
+    ├──
+    ├──
+    ├──
+    ├──
+    ├──
+    ├── Get_AttendanceBy* (course/date/status/search/summary)
+    ├──
+    ├── GetStudentEligibilityReport
+    ├── Get_medicalsBy* (course/date/name/status)
+    └── —
+
+
+Technical Officer (TO) (Attendance & medical linkage)
+│
+├── Tables
+│   ├── C/U: Attendance, MedicalParticipation
+│   ├── R: Course, Lecture, Student, Users, Medicals
+│   └── (Optional U): Medicals (routing/meta only)
+│
+├── Views  → SELECT
+│   ├── View_Attendance
+│   ├── View_StudentCourseAttendance
+│   ├── View_Students
+│   ├── View_Medicals
+│   └── View_CourseTotalHours
+│
+└── Procedures  → EXECUTE
+    ├── Add_Medical (if assisting in pre-approval)
+    ├── Get_AttendanceBy* (course/date/status/search/summary)
+    ├── Get_medicalsBy* (course/date/name/status)
+    └── Get_studentDetailsByID
+
+
+Student (Self data only)
+│
+├── Tables
+│   ├── C: Medicals
+│   └── R: Attendance (own), Lecture, Course, Users (own)
+│
+├── Views  → SELECT (self-filtered)
+│   ├── View_StudentCourseAttendance
+│   ├── View_Attendance
+│   └── View_Medicals
+│
+└── Procedures  → EXECUTE
+    ├── Add_Medical
+    ├── Get_AttendanceByRegNo / Get_AttendanceSummaryByRegNo
+    ├── Get_medicalsByDate / Get_medicalsByStatus
+    ├── GetStudentGPA_Report
+    └── GetStudentMarkSheetFormatted
