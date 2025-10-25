@@ -95,8 +95,7 @@ CREATE TABLE Attendance (
     SessionDate DATE NOT NULL,
     Status ENUM(
         'Present',
-        'Absent',
-        'Medical'
+        'Absent'
     ) NOT NULL,
     RecordedBy INT NOT NULL,
     FOREIGN KEY (RegNo) REFERENCES Student (StudentRegNo) ON DELETE CASCADE ON UPDATE CASCADE,
