@@ -32,4 +32,4 @@ END //
 DELIMITER ;
 
 
--- CALL Get_StudentByBatch('ICT2021');
+CALL Get_StudentByBatch('ICT2021');

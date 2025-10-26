@@ -26,4 +26,4 @@ WHERE
     U.Role = 'Admin'
 ORDER BY D.DeptCode, FullName;
 
-SELECT * FROM View_Admins LIMIT 20;
+SELECT * FROM View_Admins LIMIT 5;

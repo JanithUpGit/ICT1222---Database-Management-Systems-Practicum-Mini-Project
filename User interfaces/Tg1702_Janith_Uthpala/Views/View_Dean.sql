@@ -35,4 +35,4 @@ WHERE
     OR L.Role = 'Dean'
 ORDER BY D.DeptCode, FullName;
 
-SELECT * FROM View_Dean LIMIT 20;
+SELECT * FROM View_Dean LIMIT 5;
