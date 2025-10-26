@@ -15,7 +15,7 @@ SELECT
     -- Calculate average of top 2 quizzes
     ROUND((q.TopQuiz1 + q.TopQuiz2) / 2, 2) AS AvgTopTwoQuizzes,
 
-    -- Get mid mark (same logic as Get_MidMark)
+
     CASE
         WHEN m.Mid_Theory IS NOT NULL AND m.Mid_Practical IS NOT NULL THEN ROUND((m.Mid_Theory + m.Mid_Practical) / 2, 2)
         WHEN m.Mid_Theory IS NOT NULL THEN m.Mid_Theory
@@ -23,7 +23,6 @@ SELECT
         ELSE NULL
     END AS MidMark,
 
-    -- Calculate CATotal = (AvgTopTwoQuizzes + Assessment1 + MidMark) / 3
     ROUND((
         ((q.TopQuiz1 + q.TopQuiz2) / 2)
         + m.Assessment1

@@ -1,7 +1,7 @@
 DELIMITER $$
 
-DROP PROCEDURE IF EXISTS Get_MarksByBatch $$
-CREATE PROCEDURE Get_MarksByBatch(
+DROP PROCEDURE IF EXISTS Get_CAMarksByBatch $$
+CREATE PROCEDURE Get_CAMarksByBatch(
     IN p_Batch INT
 )
 BEGIN
@@ -13,4 +13,4 @@ BEGIN
 END $$
 
 DELIMITER ;
-CALL Get_MarksByBatch(2020);
+CALL Get_CAMarksByBatch(2020);
