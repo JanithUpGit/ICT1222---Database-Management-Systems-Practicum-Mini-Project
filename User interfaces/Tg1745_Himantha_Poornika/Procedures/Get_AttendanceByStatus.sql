@@ -4,7 +4,7 @@
 --                  When status='Medical', only shows lectures
 --                  that are linked to an Approved medical for
 --                  that student via MedicalParticipation.
--- Author         : [Your Name]
+-- Author         : [Himantha Poornika]
 -- Date           : [2025/10/24]
 -- ==========================================================
 
