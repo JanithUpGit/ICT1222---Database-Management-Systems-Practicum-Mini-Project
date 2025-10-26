@@ -10,13 +10,11 @@ SELECT
     eep.EndExamEligibility,
     esa.ESAMark,
 
-    -- If not eligible, show NULL as FinalMark
     CASE
         WHEN eep.EndExamEligibility != 'Eligible to Sit End Exam' THEN NULL
         ELSE ROUND((eep.CATotal * 0.4) + (esa.ESAMark * 0.6), 2)
     END AS FinalMark,
 
-    -- Grade (only if eligible)
     CASE
         WHEN eep.EndExamEligibility != 'Eligible to Sit End Exam' THEN 'Not Eligible'
         WHEN esa.ESAMark < 35 THEN 'F'
@@ -28,7 +26,6 @@ SELECT
         ELSE 'F'
     END AS Grade,
 
-    -- Result status message (now includes 'Repeat')
     CASE
         WHEN eep.EndExamEligibility != 'Eligible to Sit End Exam'
             THEN 'Repeat (Failed CA or Attendance Eligibility)'
