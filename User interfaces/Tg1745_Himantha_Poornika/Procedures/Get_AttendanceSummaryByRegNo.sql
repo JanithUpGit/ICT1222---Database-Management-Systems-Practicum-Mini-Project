@@ -4,7 +4,7 @@
 --                  using View_StudentCourseAttendance:
 --                  (1) Per-course breakdown with eligibility
 --                  (2) Overall weighted totals across courses
--- Author         : [janith Uthpala]
+-- Author         : [Himantha Poornika]
 -- Date           : [2025/10/24]
 -- ==========================================================
 

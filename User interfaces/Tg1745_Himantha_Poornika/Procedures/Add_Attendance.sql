@@ -7,7 +7,7 @@
 --              - If p_SessionDate IS NULL, it uses the lecture date.
 --              - Prevents duplicate (RegNo, LectureID) rows.
 --              - Returns the inserted row.
--- Author    : [Your Name]
+-- Author    : [Himantha Poornika]
 -- Date      : [YYYY-MM-DD]
 -- ==========================================================
 

@@ -5,7 +5,7 @@
 --              lecture details, student registration number,
 --              student name, attendance status, and the staff
 --              member who recorded the attendance.
--- Author     : [Tg1702 Janith Uthpala]
+-- Author     : [Tg1745 Himantha Poornika]
 -- ==========================================================
 
 CREATE OR REPLACE VIEW View_Attendance AS
