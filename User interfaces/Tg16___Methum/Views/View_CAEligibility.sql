@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW View_Eligibility AS
+CREATE OR REPLACE VIEW View_CAEligibility AS
 SELECT
     c.StudentRegNo,
     c.StudentName,

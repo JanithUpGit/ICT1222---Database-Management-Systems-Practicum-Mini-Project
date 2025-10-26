@@ -30,7 +30,6 @@ SELECT
     v.End_Theory,
     v.End_Practical,
 
-    -- ESA Mark logic (same as Get_ESAMark)
     CASE
         WHEN v.End_Theory IS NOT NULL AND v.End_Practical IS NOT NULL
             THEN ROUND((v.End_Theory + v.End_Practical) / 2, 2)
