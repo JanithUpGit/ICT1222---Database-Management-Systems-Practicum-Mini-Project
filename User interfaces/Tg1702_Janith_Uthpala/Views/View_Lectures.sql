@@ -1,15 +1,19 @@
 -- ==========================================================
--- View Name  : View_Lectures
--- Purpose    : Lecturers (excluding Deans) with staff code and department.
--- Note       : Uses Lecturer table; filters Lecturer.Role='Lecturer'.
+-- View Name   : View_Lectures
+-- Description  : Displays detailed information about lecturers, including
+--                their personal details, contact information, assigned role,
+--                and department details.
+--
+-- Author       : [TG1702 Janith Uthpala]
 -- ==========================================================
+
 DROP VIEW IF EXISTS View_Lectures;
 
 CREATE VIEW View_Lectures AS
 SELECT
     U.Id AS UserID,
     L.StaffCode,
-    L.Role AS LecturerRole, -- 'Lecturer'
+    L.Role AS LecturerRole,
     CONCAT(U.FirstName, ' ', U.LastName) AS FullName,
     U.Email,
     U.Phone,
@@ -27,8 +31,6 @@ FROM
     JOIN Department D ON D.DepartmentID = U.DepartmentID
 WHERE
     L.Role = 'Lecturer'
-    -- Optionally also ensure Users.Role='Lecturer'
-    -- AND U.Role = 'Lecturer'SELECT * FROM View_AllUsers           LIMIT 20;
 ORDER BY D.DeptCode, FullName;
 
 SELECT * FROM View_Lectures LIMIT 20;

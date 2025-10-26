@@ -1,37 +1,41 @@
-DROP PROCEDURE IF EXISTS Update_MedicalApproval;
+-- ==========================================================
+-- Procedure Name : Update_MedicalApproval
+-- Description    : Updates the approval status of a medical record 
+--                  in the Medicals table. Only accepts exact status 
+--                  values ('Pending', 'Approved', or 'Rejected').
+--
+-- Parameters     :
+--      p_MedicalID - The MedicalID of the record to update.
+--      p_Status    - The new approval status ('Pending', 'Approved', 'Rejected').
+--
+-- Author          : [TG1702 Janith Uthpala]
+-- Date Created    : [2025-10-26]
+-- ==========================================================
+
+DROP PROCEDURE IF EXISTS Update_MedicalStatusByMedicalIDAndMStatus;
 DELIMITER //
 
-CREATE PROCEDURE Update_MedicalApproval(
+CREATE PROCEDURE Update_MedicalStatusByMedicalIDAndMStatus(
     IN p_MedicalID INT,
-    IN p_Status VARCHAR(10)   -- 'Pending' | 'Approved' | 'Rejected'
+    IN p_Status VARCHAR(10)  
 )
 BEGIN
-    DECLARE v_status VARCHAR(10);
 
-    -- Normalize and validate input status
-    SET v_status = UPPER(TRIM(p_Status));
-    IF v_status NOT IN ('PENDING','APPROVED','REJECTED') THEN
+    IF p_Status NOT IN ('Pending', 'Approved', 'Rejected') THEN
         SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'Invalid status. Use Pending, Approved, or Rejected';
+            SET MESSAGE_TEXT = 'Invalid status. Use exactly: Pending, Approved, or Rejected.';
     END IF;
 
-    -- Check existence of the medical record
-    IF (SELECT COUNT(*) FROM Medicals WHERE MedicalID = p_MedicalID) = 0 THEN
+
+    IF NOT EXISTS (SELECT 1 FROM Medicals WHERE MedicalID = p_MedicalID) THEN
         SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'MedicalID not found';
+            SET MESSAGE_TEXT = 'MedicalID not found.';
     END IF;
 
-    -- Update status (map normalized text back to enum-cased values)
     UPDATE Medicals
-    SET ApprovalStatus =
-        CASE v_status
-            WHEN 'PENDING'  THEN 'Pending'
-            WHEN 'APPROVED' THEN 'Approved'
-            WHEN 'REJECTED' THEN 'Rejected'
-        END
+    SET ApprovalStatus = p_Status
     WHERE MedicalID = p_MedicalID;
 
-    -- Return confirmation
     SELECT 
         M.MedicalID,
         M.StudentRegNo,
@@ -46,10 +50,8 @@ BEGIN
     JOIN Users U   ON U.Id = S.UserID
     WHERE M.MedicalID = p_MedicalID;
 END //
-//
 DELIMITER ;
 
-
-CALL Update_MedicalApproval(3, 'Approved');
-CALL Update_MedicalApproval(3, 'Rejected');
-CALL Update_MedicalApproval(3, 'Pending');
+CALL Update_MedicalStatusByMedicalIDAndMStatus(3, 'Approved');
+CALL Update_MedicalStatusByMedicalIDAndMStatus(3, 'Rejected');
+CALL Update_MedicalStatusByMedicalIDAndMStatus(3, 'Pending');

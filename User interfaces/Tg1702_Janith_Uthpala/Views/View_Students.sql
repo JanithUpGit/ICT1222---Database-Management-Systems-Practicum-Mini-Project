@@ -1,7 +1,13 @@
 -- ==========================================================
--- View Name  : View_Students
--- Purpose    : Students with user profile, department, reg no & batch.
+-- View Name   : View_Students
+-- Description  : Displays detailed information about all students,
+--                combining student, user, and department data. This view
+--                provides a unified profile for each student, including
+--                registration, contact, and academic information.
+--
+-- Author       : [TG1702 Janith Uthpala]
 -- ==========================================================
+
 DROP VIEW IF EXISTS View_Students;
 
 CREATE VIEW View_Students AS
@@ -26,8 +32,7 @@ FROM
     Student S
     JOIN Users U ON U.Id = S.UserID
     JOIN Department D ON D.DepartmentID = U.DepartmentID
-    -- Optionally enforce that the Users.Role is 'Student'
-    -- WHERE U.Role = 'Student'
+
 ORDER BY S.StudentRegNo;
 
 SELECT * FROM View_Students LIMIT 20;

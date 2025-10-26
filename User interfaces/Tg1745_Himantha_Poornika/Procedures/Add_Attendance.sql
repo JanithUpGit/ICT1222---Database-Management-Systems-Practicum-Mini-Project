@@ -25,12 +25,10 @@ BEGIN
     DECLARE v_lectureDate DATE;
     DECLARE v_attendanceId INT;
 
-    /* ---- Validate student exists ---- */
     IF NOT EXISTS (SELECT 1 FROM Student S WHERE S.StudentRegNo = p_RegNo) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid student: RegNo not found.';
     END IF;
 
-    /* ---- Validate lecture exists and get lecture date ---- */
     SELECT L.LectureDate INTO v_lectureDate
     FROM Lecture L
     WHERE L.LectureID = p_LectureID;
@@ -38,17 +36,14 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid lecture: LectureID not found.';
     END IF;
 
-    /* ---- Validate recorder exists ---- */
     IF NOT EXISTS (SELECT 1 FROM Users U WHERE U.Id = p_RecordedBy) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid recorder: Users.Id not found.';
     END IF;
 
-    /* ---- Validate status ---- */
     IF p_Status NOT IN ('Present','Absent') THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid status. Must be Present or Absent.';
     END IF;
 
-    /* ---- Prevent duplicate attendance for the same (RegNo, LectureID) ---- */
     IF EXISTS (
         SELECT 1 
         FROM Attendance A 
@@ -58,16 +53,13 @@ BEGIN
             SET MESSAGE_TEXT = 'Duplicate attendance: (RegNo, LectureID) already recorded.';
     END IF;
 
-    /* ---- Default SessionDate to LectureDate if NULL ---- */
     SET p_SessionDate = IFNULL(p_SessionDate, v_lectureDate);
 
-    /* ---- Insert attendance ---- */
     INSERT INTO Attendance (RegNo, LectureID, SessionDate, Status, RecordedBy)
     VALUES (p_RegNo, p_LectureID, p_SessionDate, p_Status, p_RecordedBy);
 
     SET v_attendanceId = LAST_INSERT_ID();
 
-    /* ---- Return the inserted row (with names) ---- */
     SELECT 
         A.AttendanceID,
         A.RegNo,
@@ -80,4 +72,5 @@ BEGIN
     LEFT JOIN Users Urec ON Urec.Id = A.RecordedBy
     WHERE A.AttendanceID = v_attendanceId;
 END //
+//
 DELIMITER ;

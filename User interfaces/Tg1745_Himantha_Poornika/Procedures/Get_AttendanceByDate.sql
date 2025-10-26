@@ -14,7 +14,7 @@
 
 DROP PROCEDURE IF EXISTS Get_AttendanceByDate;
 
-DELIMITER / /
+DELIMITER //
 
 CREATE PROCEDURE Get_AttendanceByDate(
     IN p_DateFrom   DATE,
@@ -22,13 +22,12 @@ CREATE PROCEDURE Get_AttendanceByDate(
     IN p_CourseCode VARCHAR(10)
 )
 BEGIN
-    /* --- Validate date range --- */
+
     IF p_DateFrom IS NULL OR p_DateTo IS NULL OR p_DateFrom > p_DateTo THEN
         SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'Invalid date range: DateFrom must be before or equal to DateTo.';
     END IF;
 
-    /* --- Fetch attendance records --- */
     SELECT
         StudentRegNo,
         StudentName,
@@ -45,7 +44,7 @@ BEGIN
       AND (p_CourseCode IS NULL OR CourseCode = p_CourseCode)
     ORDER BY CourseCode, LectureDate, StudentRegNo;
 END //
-
+//
 DELIMITER;
 
 CALL Get_AttendanceByDate ( '2025-09-01', '2025-10-31', NULL );

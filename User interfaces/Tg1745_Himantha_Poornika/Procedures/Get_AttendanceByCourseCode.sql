@@ -19,25 +19,23 @@
 
 DROP PROCEDURE IF EXISTS Get_AttendanceByCourseCode;
 
-DELIMITER / /
+DELIMITER //
 
 CREATE PROCEDURE Get_AttendanceByCourseCode(
     IN p_CourseCode VARCHAR(10)
 )
 BEGIN
-    /* --- Validate input course code --- */
+   
     IF p_CourseCode IS NULL OR p_CourseCode = '' THEN
         SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'Course code cannot be NULL or empty.';
     END IF;
 
-    /* --- Ensure course exists --- */
     IF NOT EXISTS (SELECT 1 FROM Course WHERE CourseCode = p_CourseCode) THEN
         SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'Invalid CourseCode: No matching course found.';
     END IF;
 
-    /* --- Fetch attendance data from View_Attendance --- */
     SELECT
         StudentRegNo,
         StudentName,
@@ -53,6 +51,7 @@ BEGIN
     WHERE CourseCode = p_CourseCode
     ORDER BY LectureDate, StudentRegNo;
 END //
+//
 
 DELIMITER;
 

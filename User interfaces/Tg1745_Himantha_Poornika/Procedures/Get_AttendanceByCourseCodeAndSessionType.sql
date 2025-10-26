@@ -21,13 +21,12 @@ CREATE PROCEDURE Get_AttendanceByCourseCodeAndSessionType(
     IN p_Type       VARCHAR(10)
 )
 BEGIN
-    /* --- Validate session type --- */
+
     IF p_Type NOT IN ('Theory','Practical','Both') THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Type must be Theory, Practical, or Both';
     END IF;
 
-    /* --- Main optimized query --- */
     SELECT
         VA.StudentRegNo,
         VA.StudentName,

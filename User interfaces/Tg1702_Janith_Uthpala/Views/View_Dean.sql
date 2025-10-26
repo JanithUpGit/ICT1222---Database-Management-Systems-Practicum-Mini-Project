@@ -1,7 +1,13 @@
 -- ==========================================================
--- View Name  : View_Dean
--- Purpose    : Deans (from Users.Role or Lecturer.Role), with staff code if available.
+-- View Name   : View_Dean
+-- Description  : Displays detailed information about the Dean(s) of departments,
+--                combining user, lecturer, and department details. This view
+--                captures both users and lecturers who hold the role of 'Dean'.
+--
+-- Author       : [TG1702 Janith Uthpala]
+-- Date Created : [2025-10-26]
 -- ==========================================================
+
 DROP VIEW IF EXISTS View_Dean;
 
 CREATE VIEW View_Dean AS
@@ -17,7 +23,7 @@ SELECT DISTINCT
     D.DeptCode,
     D.DeptName,
     L.StaffCode,
-    L.Role AS LecturerRole, -- should be 'Dean' if present
+    L.Role AS LecturerRole, 
     U.CreatedAt,
     U.UpdatedAt
 FROM

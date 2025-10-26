@@ -15,7 +15,7 @@ CREATE PROCEDURE Get_AttendanceSummaryByRegNo(
     IN p_RegNo VARCHAR(15)
 )
 BEGIN
-    /* (1) Per-course breakdown */
+
     SELECT
         StudentID,
         StudentName,
@@ -30,7 +30,6 @@ BEGIN
     WHERE StudentID = p_RegNo
     ORDER BY CourseCode, CourseID;
 
-    /* (2) Overall weighted summary across all courses */
     SELECT
         p_RegNo AS StudentID,
         MAX(StudentName) AS StudentName,
@@ -46,6 +45,7 @@ BEGIN
     FROM View_StudentCourseAttendance
     WHERE StudentID = p_RegNo;
 END //
+//
 DELIMITER ;
 
 

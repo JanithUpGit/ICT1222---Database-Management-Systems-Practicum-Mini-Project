@@ -4,7 +4,6 @@
 --                  filtered by a given medical approval status
 --                  (e.g., 'Approved', 'Pending', 'Rejected').
 -- Author         : [Janith Uthpala]
--- Date           : [2025/10/24]
 -- ==========================================================
 
 DROP PROCEDURE IF EXISTS Get_MedicalsByStatus;
@@ -21,3 +20,7 @@ BEGIN
 END //
 
 DELIMITER ;
+
+CALL Get_MedicalsByStatus('Approved');
+CALL Get_MedicalsByStatus('Rejected');
+CALL Get_MedicalsByStatus('Pending');
