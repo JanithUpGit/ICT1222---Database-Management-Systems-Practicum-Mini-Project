@@ -12,7 +12,7 @@ DROP PROCEDURE IF EXISTS Get_AttendanceByStatus;
 DELIMITER //
 
 CREATE PROCEDURE Get_AttendanceByStatus(
-    IN p_Status VARCHAR(20)   -- e.g., 'Medical', 'Present', 'Absent'
+    IN p_Status VARCHAR(20)   
 )
 BEGIN
     SELECT 
@@ -22,23 +22,21 @@ BEGIN
         V.LectureID,
         V.LectureDate,
         V.DurationHours,
-        V.StudentID,
+        V.StudentRegNo,
         V.StudentName,
-        V.SessionDate,
         V.Status,
         V.RecordedByName,
-        M.MedicalID,
-        M.ApprovalStatus
+        M.MedicalID
     FROM View_Attendance V
     LEFT JOIN MedicalParticipation MP 
            ON MP.LectureID = V.LectureID
     LEFT JOIN Medicals M 
            ON M.MedicalID   = MP.MedicalID
-          AND M.StudentRegNo = V.StudentID
+          AND M.StudentRegNo = V.StudentRegNo
           AND M.ApprovalStatus = 'Approved'
     WHERE LOWER(V.Status) = LOWER(p_Status)
       AND (LOWER(p_Status) <> 'medical' OR M.MedicalID IS NOT NULL)
-    ORDER BY V.CourseID, V.LectureDate, V.StudentID;
+    ORDER BY V.CourseID, V.LectureDate, V.StudentRegNo;
 END //
 //
 DELIMITER ;
@@ -46,3 +44,5 @@ DELIMITER ;
 
 
 CALL Get_AttendanceByStatus('Absent');
+CALL Get_AttendanceByStatus('Medical');
+CALL Get_AttendanceByStatus('Present');

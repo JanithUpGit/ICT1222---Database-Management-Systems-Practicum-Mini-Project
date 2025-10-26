@@ -1,11 +1,15 @@
 -- ==========================================================
 -- Procedure Name : Get_AttendanceByRegNo
--- Description    : Displays detailed attendance records for a 
---                  specific student across all courses, including 
---                  lecture date, duration, status, and recorded staff.
--- Author         : [Your Name]
--- Date           : [Current Date]
+-- Description    : Retrieves all attendance records for a specific student 
+--                  based on their registration number. Displays complete 
+--                  lecture attendance history across all enrolled courses.
+--
+-- Parameters     : p_RegNo - The student's registration number to filter attendance records.
+--
+--
+-- Author          : [TG1702 Janith Uthpala]
 -- ==========================================================
+
 
 DROP PROCEDURE IF EXISTS Get_AttendanceByRegNo;
 DELIMITER //
@@ -16,7 +20,7 @@ CREATE PROCEDURE Get_AttendanceByRegNo(
 BEGIN
     SELECT *
     FROM View_Attendance
-    WHERE StudentID = p_RegNo
+    WHERE StudentRegNo = p_RegNo
     ORDER BY CourseID, LectureDate;
 END //
 
