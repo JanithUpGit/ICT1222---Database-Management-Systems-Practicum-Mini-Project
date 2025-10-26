@@ -15,11 +15,6 @@
 
 
 
-
-
-
-
-
 CREATE OR REPLACE VIEW View_Marks AS
 SELECT 
     m.MarkID,
