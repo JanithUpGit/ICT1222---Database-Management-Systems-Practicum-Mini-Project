@@ -1,3 +1,28 @@
+
+
+
+
+-- ==========================================================
+-- View Name        : View_TopTwoQuizMarks
+-- Description      : Calculates the highest (TopQuiz1) and second highest
+--                    (TopQuiz2) quiz marks for each student in each
+--                    course from the Marks table.
+--
+-- Tables Used      : Marks
+--
+-- Author           : [TG1695 Methum Weerasinghe]
+-- ==========================================================
+
+
+
+
+
+
+
+
+
+
+
 CREATE OR REPLACE VIEW View_TopTwoQuizMarks AS
 SELECT
     m.MarkID,
