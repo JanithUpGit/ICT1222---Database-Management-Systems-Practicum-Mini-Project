@@ -9,7 +9,7 @@
 --      p_Status    - The new approval status ('Pending', 'Approved', 'Rejected').
 --
 -- Author          : [TG1702 Janith Uthpala]
--- Date Created    : [2025-10-26]
+
 -- ==========================================================
 
 DROP PROCEDURE IF EXISTS Update_MedicalStatusByMedicalIDAndMStatus;
