@@ -9,7 +9,6 @@ BEGIN
     DECLARE total_weighted_points DECIMAL(10,4) DEFAULT 0.0;
     DECLARE total_credits DECIMAL(10,2) DEFAULT 0.0;
 
-    -- Calculate total weighted grade points and total credits
     SELECT
         SUM(c.Credits * 
             CASE 
@@ -33,7 +32,7 @@ BEGIN
     JOIN Course AS c
       ON r.CourseCode = c.CourseCode
     WHERE r.StudentRegNo = p_StudentRegNo
-      AND c.CourseCode != 'ENG1222'     -- Exclude non-GPA module
+      AND c.CourseCode != 'ENG1222'   
       AND r.Grade NOT IN ('Not Eligible', 'Repeat')
       AND r.Grade IS NOT NULL;
 

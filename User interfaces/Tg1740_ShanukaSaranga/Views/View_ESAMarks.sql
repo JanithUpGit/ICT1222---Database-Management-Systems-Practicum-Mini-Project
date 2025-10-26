@@ -11,14 +11,6 @@
 -- Author           : [TG1695 Methum Weerasinghe]
 -- ==========================================================
 
-
-
-
-
-
-
-
-
 CREATE OR REPLACE VIEW View_ESAMarks AS
 SELECT
     v.MarkID,

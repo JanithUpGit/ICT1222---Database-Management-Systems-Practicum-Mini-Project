@@ -25,4 +25,4 @@ DELIMITER ;
 
 
 CALL Get_GradeByMark(82, @Grade);
-SELECT @Grade;  -- returns 'B+'
+SELECT @Grade;  

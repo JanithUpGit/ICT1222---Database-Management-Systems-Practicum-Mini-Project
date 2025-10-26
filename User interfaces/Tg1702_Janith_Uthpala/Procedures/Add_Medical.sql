@@ -16,18 +16,6 @@
 --
 -- Author         : [TG1702 Janith Uthpala]
 
-
-
-
-
-
-
-
-
-
-
-
-
 DROP PROCEDURE IF EXISTS Add_Medical;
 
 DELIMITER /

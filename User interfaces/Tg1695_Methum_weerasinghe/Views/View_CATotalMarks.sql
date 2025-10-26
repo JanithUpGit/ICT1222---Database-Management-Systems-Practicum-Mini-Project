@@ -8,11 +8,10 @@ SELECT
     m.CourseName,
     m.Assessment1,
     
-    -- Join with Top Two Quiz View
+    
     q.TopQuiz1,
     q.TopQuiz2,
 
-    -- Calculate average of top 2 quizzes
     ROUND((q.TopQuiz1 + q.TopQuiz2) / 2, 2) AS AvgTopTwoQuizzes,
 
 

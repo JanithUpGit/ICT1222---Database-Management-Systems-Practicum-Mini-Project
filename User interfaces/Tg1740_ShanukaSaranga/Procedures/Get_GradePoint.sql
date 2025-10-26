@@ -18,7 +18,7 @@ BEGIN
         WHEN 'C-' THEN SET p_GradePoint = 1.7;
         WHEN 'D'  THEN SET p_GradePoint = 1.3;
         WHEN 'E'  THEN SET p_GradePoint = 0.0;
-        ELSE SET p_GradePoint = NULL;  -- Invalid or missing grade
+        ELSE SET p_GradePoint = NULL;  
     END CASE;
 END $$
 

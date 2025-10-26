@@ -6,11 +6,11 @@ SELECT
     ca.CourseCode,
     ca.CourseName,
     
-    -- From CA Eligibility View
+   
     ca.CATotal,
     ca.EligibilityStatus AS CAEligibility,
 
-    -- From Attendance Eligibility View
+   
     att.AttendancePercent,
     att.AttendanceEligibility,
 

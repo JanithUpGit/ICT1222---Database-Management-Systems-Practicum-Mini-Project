@@ -23,8 +23,7 @@ FROM
     TechnicalOfficer T
     JOIN Users U ON U.Id = T.UserID
     JOIN Department D ON D.DepartmentID = U.DepartmentID
-    -- Optionally enforce Users.Role = 'TO'
-    -- WHERE U.Role = 'TO'
+  
 ORDER BY D.DeptCode, FullName;
 
 SELECT * FROM View_TechnicalOfficers LIMIT 20;

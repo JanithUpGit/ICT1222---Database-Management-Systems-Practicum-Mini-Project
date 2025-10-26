@@ -5,7 +5,7 @@ CREATE PROCEDURE Get_GPAByStudentRegNo(
     IN p_StudentRegNo VARCHAR(15)
 )
 BEGIN
-    -- 1️⃣ Display detailed course results
+ 
     SELECT
         r.StudentRegNo,
         r.StudentName,
@@ -21,7 +21,7 @@ BEGIN
     WHERE r.StudentRegNo = p_StudentRegNo
     ORDER BY r.CourseCode;
 
-    -- 2️⃣ Display SGPA (Semester GPA)
+
     SELECT 
         s.StudentRegNo,
         s.SGPA,
@@ -30,7 +30,7 @@ BEGIN
     FROM View_SGPA AS s
     WHERE s.StudentRegNo = p_StudentRegNo;
 
-    -- 3️⃣ Display CGPA (Cumulative GPA)
+  
     SELECT 
         c.StudentRegNo,
         c.CGPA,

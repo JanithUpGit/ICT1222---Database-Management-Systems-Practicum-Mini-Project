@@ -9,7 +9,6 @@ BEGIN
     DECLARE total_weighted_points DECIMAL(10,4) DEFAULT 0.0;
     DECLARE total_credits DECIMAL(10,2) DEFAULT 0.0;
 
-    -- Calculate total weighted grade points and credits for all GPA modules
     SELECT
         SUM(c.Credits * 
             CASE 
@@ -37,7 +36,7 @@ BEGIN
       AND r.Grade NOT IN ('Not Eligible', 'Repeat')
       AND r.Grade IS NOT NULL;
 
-    -- Compute CGPA
+   
     IF total_credits > 0 THEN
         SET p_CGPA = ROUND(total_weighted_points / total_credits, 2);
     ELSE

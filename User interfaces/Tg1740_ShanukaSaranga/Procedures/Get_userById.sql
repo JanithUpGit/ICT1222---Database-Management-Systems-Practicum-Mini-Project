@@ -5,13 +5,13 @@ CREATE PROCEDURE Get_UserByID(IN p_UserID INT)
 BEGIN
     DECLARE v_message TEXT;
 
-    -- 1. Validate that user exists
+
     IF NOT EXISTS (SELECT 1 FROM Users WHERE Id = p_UserID) THEN
         SET v_message = CONCAT('User not found. UserID = ', p_UserID);
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = v_message;
     END IF;
 
-    -- 2. Fetch the user and role-specific data
+
     SELECT
         U.Id AS UserID,
         CONCAT(U.FirstName, ' ', U.LastName) AS FullName,
@@ -26,7 +26,7 @@ BEGIN
         D.DepartmentID,
         D.DeptCode,
         D.DeptName,
-        -- Role-specific fields (nullable)
+    
         S.StudentRegNo,
         S.Batch,
         L.StaffCode,
