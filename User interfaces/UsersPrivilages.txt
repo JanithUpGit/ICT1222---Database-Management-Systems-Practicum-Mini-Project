@@ -136,3 +136,8 @@ Student (Self data only)
     ├── Get_medicalsByDate / Get_medicalsByStatus
     ├── GetStudentGPA_Report
     └── GetStudentMarkSheetFormatted
+
+
+
+Add_Medical
+View_Attendance

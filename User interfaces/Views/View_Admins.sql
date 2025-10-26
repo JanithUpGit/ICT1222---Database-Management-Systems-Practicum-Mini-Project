@@ -1,10 +1,12 @@
 -- ==========================================================
 -- View Name  : View_Admins
--- Purpose    : Admin users with department.
+-- Description: Displays detailed information about all Admin users.
+--              Includes personal details, contact info, department
+--              details, and timestamps for record creation and updates.
+-- Author     : [TG1702 Janith Uthpala]
 -- ==========================================================
-DROP VIEW IF EXISTS View_Admins;
 
-CREATE VIEW View_Admins AS
+CREATE OR REPLACE VIEW View_Admins AS
 SELECT
     U.Id AS UserID,
     CONCAT(U.FirstName, ' ', U.LastName) AS FullName,

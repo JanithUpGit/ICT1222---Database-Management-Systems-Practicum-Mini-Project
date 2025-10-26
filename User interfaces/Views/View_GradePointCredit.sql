@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW Vw_GradePointCredit AS
+CREATE OR REPLACE VIEW View_GradePointCredit AS
 SELECT 
     RegNo,
     CourseCode,
@@ -6,9 +6,7 @@ SELECT
     GradePoint,
     (GradePoint * Credits) AS PointCreditValue
 FROM 
-    Vw_StudentGradeReport;
+    View_StudentGradeReport;
 
 
-
-
-SELECT * FROM Vw_GradePointCredit WHERE RegNo = 'TG2020-001';
+SELECT * FROM View_GradePointCredit WHERE RegNo = 'TG2020-001';

@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW Vw_StudentMarkSheet AS
+CREATE OR REPLACE VIEW View_StudentMarkSheet AS
 SELECT
     M.RegNo,
     C.CourseCode,
@@ -23,3 +23,4 @@ GROUP BY
     M.RegNo,
     C.CourseID;
 
+select * from View_StudentMarkSheet;

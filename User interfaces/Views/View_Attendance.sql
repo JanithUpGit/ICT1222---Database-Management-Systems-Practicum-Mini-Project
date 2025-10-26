@@ -5,11 +5,8 @@
 --              lecture details, student registration number,
 --              student name, attendance status, and the staff
 --              member who recorded the attendance.
--- Author     : [Your Name]
--- Date       : [Current Date]
+-- Author     : [Tg1702 Janith Uthpala]
 -- ==========================================================
-
-DROP VIEW IF EXISTS View_CourseAttendance;
 
 CREATE OR REPLACE VIEW View_Attendance AS
 SELECT
@@ -19,9 +16,9 @@ SELECT
     L.LectureID,
     L.LectureDate,
     L.DurationHours,
-    S.StudentRegNo AS StudentID,
+    S.StudentRegNo,
     CONCAT(U.FirstName, ' ', U.LastName) AS StudentName,
-    A.SessionDate,
+
     CASE
         WHEN EXISTS (
             SELECT 1

@@ -1,4 +1,4 @@
-CREATE OR REPLACE VIEW Vw_FinalCA_Eligibility AS
+CREATE OR REPLACE VIEW View_FinalCA_Eligibility AS
 WITH CombinedMarks AS (
     -- Step 1: Get the marks from the detailed view and create single 'mid' and 'end' marks
     SELECT
@@ -12,7 +12,7 @@ WITH CombinedMarks AS (
         (Mid_Theory + Mid_Practical) / (CASE WHEN Mid_Theory > 0 AND Mid_Practical > 0 THEN 2 ELSE 1 END) AS mid,
         (Final_Theory + Final_Practical) / (CASE WHEN Final_Theory > 0 AND Final_Practical > 0 THEN 2 ELSE 1 END) AS end
     FROM
-        Vw_StudentMarkSheet -- This must be the view that uses 0.00 for NULLs
+        View_StudentMarkSheet -- This must be the view that uses 0.00 for NULLs
 )
 -- Step 2: Apply your weighting and eligibility formulas, now with formatting
 SELECT
