@@ -17,6 +17,8 @@ SELECT
     L.LectureDate,
     L.DurationHours,
     S.StudentRegNo,
+     S.Status AS StudentStatus,
+
     CONCAT(U.FirstName, ' ', U.LastName) AS StudentName,
 
     CASE
