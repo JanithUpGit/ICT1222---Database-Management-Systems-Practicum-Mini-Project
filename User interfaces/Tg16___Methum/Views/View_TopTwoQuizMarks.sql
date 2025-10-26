@@ -14,15 +14,6 @@
 -- ==========================================================
 
 
-
-
-
-
-
-
-
-
-
 CREATE OR REPLACE VIEW View_TopTwoQuizMarks AS
 SELECT
     m.MarkID,
@@ -40,4 +31,6 @@ SELECT
     ) AS TopQuiz2
 
 FROM Marks m;
- SELECT * FROM View_TopTwoCAMarks ;
+
+-- ✅ Correct view name here:
+SELECT * FROM View_TopTwoQuizMarks;
