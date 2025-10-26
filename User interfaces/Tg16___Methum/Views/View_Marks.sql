@@ -1,3 +1,25 @@
+-- ==========================================================
+-- View Name        : View_Marks
+-- Description      : Creates a comprehensive mark sheet by joining student,
+--                    user, and course data with the main 'Marks' table.
+--                    It pivots the 'MidExam' and 'EndExam' tables to display
+--                    Theory and Practical marks in separate columns.
+--                    It also calculates a 'TotalAverage'.
+--
+-- Tables Joined    : Marks, Student, Users, Course, MidExam, EndExam
+--
+-- Author           : [TG1695 Methum Weerasinghe]
+-- ==========================================================
+
+
+
+
+
+
+
+
+
+
 CREATE OR REPLACE VIEW View_Marks AS
 SELECT 
     m.MarkID,
