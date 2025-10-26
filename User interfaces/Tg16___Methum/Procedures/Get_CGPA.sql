@@ -46,3 +46,7 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+CALL Get_CGPA('TG2020-001', @cgpa);
+SELECT @cgpa AS CGPA;
