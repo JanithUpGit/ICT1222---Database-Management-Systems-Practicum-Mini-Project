@@ -9,7 +9,7 @@
 --      p_CourseCode - The course code to retrieve attendance for.
 --      p_Type       - The session type filter ('Theory', 'Practical', or 'Both').
 --
--- Author          : [TG1702 Janith Uthpala]
+-- Author          : [TG1745 Himantha Poornika
 -- Date Created    : [2025-10-26]
 -- ==========================================================
 

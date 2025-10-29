@@ -7,7 +7,7 @@
 -- Parameters     : p_RegNo - The student's registration number to filter attendance records.
 --
 --
--- Author          : [TG1702 Janith Uthpala]
+-- Author          : [TG1745 Himantha Poornika]
 -- ==========================================================
 
 

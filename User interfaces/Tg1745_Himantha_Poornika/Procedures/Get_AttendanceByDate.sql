@@ -9,7 +9,7 @@
 --      p_DateTo     - End date for filtering lecture attendance.
 --      p_CourseCode - (Optional) Course code to limit the result set.
 --
--- Author          : [TG1702 Janith Uthpala]
+-- Author          : [TG1745 Himantha Poornika]
 -- ==========================================================
 
 DROP PROCEDURE IF EXISTS Get_AttendanceByDate;

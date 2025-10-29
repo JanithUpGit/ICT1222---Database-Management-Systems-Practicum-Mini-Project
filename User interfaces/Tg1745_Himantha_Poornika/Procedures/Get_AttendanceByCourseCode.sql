@@ -13,7 +13,7 @@
 --      - Results are ordered by lecture date and student registration number.
 --      - Throws an error if the provided course code does not exist.
 --
--- Author          : [TG1702 Janith Uthpala]
+-- Author          : [TG1745 Himantha Poornika]
 -- Date Created    : [2025-10-26]
 -- ==========================================================
 
