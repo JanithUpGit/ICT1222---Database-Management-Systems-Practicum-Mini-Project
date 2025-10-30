@@ -10,7 +10,8 @@ BEGIN
     DECLARE v_MidTheory DECIMAL(5,2);
     DECLARE v_MidPractical DECIMAL(5,2);
 
-    
+
+    -- get values from view table
     SELECT Mid_Theory, Mid_Practical
     INTO v_MidTheory, v_MidPractical
     FROM View_Marks
@@ -18,6 +19,8 @@ BEGIN
       AND CourseCode = p_CourseCode
     LIMIT 1;
 
+
+-- assign marks average
 
     IF v_MidTheory IS NOT NULL AND v_MidPractical IS NOT NULL THEN
         SET p_MidMark = ROUND((v_MidTheory + v_MidPractical) / 2, 2);

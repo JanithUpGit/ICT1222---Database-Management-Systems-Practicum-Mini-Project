@@ -8,13 +8,18 @@ SELECT
     eep.CATotal,
     eep.AttendancePercent,
     eep.EndExamEligibility,
+    
     esa.ESAMark,
 
+
+-- final marks calculate
     CASE
         WHEN eep.EndExamEligibility != 'Eligible to Sit End Exam' THEN NULL
         ELSE ROUND((eep.CATotal * 0.4) + (esa.ESAMark * 0.6), 2)
     END AS FinalMark,
 
+
+-- return grade
     CASE
         WHEN eep.EndExamEligibility != 'Eligible to Sit End Exam' THEN 'Not Eligible'
         WHEN esa.ESAMark < 35 THEN 'F'
@@ -26,6 +31,7 @@ SELECT
         ELSE 'F'
     END AS Grade,
 
+-- Result status
     CASE
         WHEN eep.EndExamEligibility != 'Eligible to Sit End Exam'
             THEN 'Repeat (Failed CA or Attendance Eligibility)'
@@ -36,10 +42,22 @@ SELECT
         ELSE 'Eligible for Final Result'
     END AS ResultStatus
 
+
+
+
+-- join tables
+
 FROM View_EndExamParticipateEligibility AS eep
 JOIN View_ESAMarks AS esa
   ON eep.StudentRegNo = esa.StudentRegNo
  AND eep.CourseCode = esa.CourseCode
+
+
 ORDER BY eep.StudentRegNo, eep.CourseCode;
+
+
+
+
+
 
 select * from View_Result;

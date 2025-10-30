@@ -2,13 +2,14 @@ DELIMITER $$
 
 DROP PROCEDURE IF EXISTS Get_SGPA $$
 CREATE PROCEDURE Get_SGPA(
-    IN p_StudentRegNo VARCHAR(15),
-    OUT p_SGPA DECIMAL(4,2)
+    IN p_StudentRegNo VARCHAR(15)
 )
 BEGIN
     DECLARE total_weighted_points DECIMAL(10,4) DEFAULT 0.0;
     DECLARE total_credits DECIMAL(10,2) DEFAULT 0.0;
+    DECLARE sgpa DECIMAL(4,2) DEFAULT NULL;
 
+    -- Calculate total weighted points and credits
     SELECT
         SUM(c.Credits * 
             CASE 
@@ -38,14 +39,20 @@ BEGIN
 
     -- Calculate SGPA
     IF total_credits > 0 THEN
-        SET p_SGPA = ROUND(total_weighted_points / total_credits, 2);
+        SET sgpa = ROUND(total_weighted_points / total_credits, 2);
     ELSE
-        SET p_SGPA = NULL;
+        SET sgpa = NULL;
     END IF;
+
+    -- Print result
+    SELECT 
+        p_StudentRegNo AS StudentRegNo,
+        sgpa AS SGPA;
+
 END $$
 
 DELIMITER ;
 
 
-CALL Get_SGPA('TG2020-001', @sgpa);
-SELECT @sgpa AS SGPA;
+
+CALL Get_SGPA('TG2020-001');

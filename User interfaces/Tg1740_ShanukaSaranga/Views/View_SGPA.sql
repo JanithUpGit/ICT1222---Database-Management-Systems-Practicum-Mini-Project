@@ -3,6 +3,8 @@ SELECT
     r.StudentRegNo,
     r.StudentName,
     r.Batch,
+
+
     ROUND(
         SUM(
             c.Credits *
@@ -23,8 +25,13 @@ SELECT
         ) / SUM(c.Credits),
         2
     ) AS SGPA,
+
+
+
     SUM(c.Credits) AS TotalCredits,
     COUNT(*) AS TotalCourses
+
+
 FROM View_Result AS r
 JOIN Course AS c
   ON r.CourseCode = c.CourseCode
@@ -33,3 +40,7 @@ WHERE c.CourseCode != 'ENG1222'
   AND r.Grade IS NOT NULL
 GROUP BY r.StudentRegNo, r.StudentName, r.Batch
 ORDER BY r.StudentRegNo;
+
+
+
+select * from View_SGPA;
