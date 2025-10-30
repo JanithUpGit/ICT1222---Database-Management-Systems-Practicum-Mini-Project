@@ -20,6 +20,8 @@ CREATE PROCEDURE Get_AttendanceByCourseCodeAndSessionType(
     IN p_CourseCode VARCHAR(10),
     IN p_Type       VARCHAR(10)
 )
+
+
 BEGIN
 
     IF p_Type NOT IN ('Theory','Practical','Both') THEN

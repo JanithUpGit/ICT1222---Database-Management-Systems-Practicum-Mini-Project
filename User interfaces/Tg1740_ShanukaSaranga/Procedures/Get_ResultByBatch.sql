@@ -22,4 +22,7 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+
 CALL Get_ResultByBatch(2020);
