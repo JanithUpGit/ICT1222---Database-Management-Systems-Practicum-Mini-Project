@@ -18,8 +18,7 @@
 
 DROP PROCEDURE IF EXISTS Add_Medical;
 
-DELIMITER /
-/
+DELIMITER //
 
 CREATE PROCEDURE Add_Medical(
     IN p_RegNo        VARCHAR(15),
