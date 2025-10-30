@@ -1,14 +1,16 @@
 DELIMITER $$
 
 DROP PROCEDURE IF EXISTS Get_CGPA $$
+
 CREATE PROCEDURE Get_CGPA(
-    IN p_StudentRegNo VARCHAR(15),
-    OUT p_CGPA DECIMAL(4,2)
+    IN p_StudentRegNo VARCHAR(15)
 )
 BEGIN
     DECLARE total_weighted_points DECIMAL(10,4) DEFAULT 0.0;
     DECLARE total_credits DECIMAL(10,2) DEFAULT 0.0;
+    DECLARE student_CGPA DECIMAL(4,2);
 
+    -- Calculate weighted points and total credits.
     SELECT
         SUM(c.Credits * 
             CASE 
@@ -32,20 +34,22 @@ BEGIN
     JOIN Course AS c
       ON r.CourseCode = c.CourseCode
     WHERE r.StudentRegNo = p_StudentRegNo
-      AND c.CourseCode != 'ENG1222'       -- Exclude non-GPA module
+      AND c.CourseCode != 'ENG1222'
       AND r.Grade NOT IN ('Not Eligible', 'Repeat')
       AND r.Grade IS NOT NULL;
 
-   
+    -- Calculate CGPA.
     IF total_credits > 0 THEN
-        SET p_CGPA = ROUND(total_weighted_points / total_credits, 2);
+        SET student_CGPA = ROUND(total_weighted_points / total_credits, 2);
     ELSE
-        SET p_CGPA = NULL;
+        SET student_CGPA = NULL;
     END IF;
+
+    -- Display result.
+    SELECT p_StudentRegNo AS StudentRegNo, student_CGPA AS CGPA;
 END $$
 
 DELIMITER ;
 
-
-CALL Get_CGPA('TG2020-001', @cgpa);
-SELECT @cgpa AS CGPA;
+-- Call the procedure.
+CALL Get_CGPA('TG2020-001');
