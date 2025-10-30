@@ -20,13 +20,13 @@ CREATE PROCEDURE Update_MedicalStatusByMedicalIDAndMStatus(
     IN p_Status VARCHAR(10)  
 )
 BEGIN
-
+    --Validate Status
     IF p_Status NOT IN ('Pending', 'Approved', 'Rejected') THEN
         SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'Invalid status. Use exactly: Pending, Approved, or Rejected.';
     END IF;
 
-
+    -- Validate medical id
     IF NOT EXISTS (SELECT 1 FROM Medicals WHERE MedicalID = p_MedicalID) THEN
         SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'MedicalID not found.';

@@ -49,4 +49,4 @@ DELIMITER ;
 
 CALL Get_medicalsByName('Anushka');
 CALL Get_medicalsByName('Thilina');
-CALL Get_medicalsByName('Menaka');
+CALL Get_medicalsByName('Menaka Madushani');

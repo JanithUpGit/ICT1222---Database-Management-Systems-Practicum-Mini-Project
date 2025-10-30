@@ -1,20 +1,13 @@
-
 -- ==========================================================
 -- Procedure Name : Add_Medical
 -- Description    : Adds a new medical leave record for a student.
---                  It validates the student and the date range.
---                  It then finds all attendance records for the student
---                  within that range and updates their status to 'Absent'.
---                  Finally, it inserts a new record into the 'Medicals'
---                  table with a 'Pending' status and returns the new medical ID.
---
--- Parameters     :
---   p_RegNo        - The registration number of the student.
---   p_StartDate    - The start date of the medical leave.
---   p_EndDate      - The end date of the medical leave.
---   p_DocumentPath - The file path to the scanned medical document.
+--                  Validates the student, date range, and ensures
+--                  no duplicate submissions. Limits to 2 medicals per student.
+--                  Updates attendance within the date range to 'Absent',
+--                  then inserts a new medical record.
 --
 -- Author         : [TG1702 Janith Uthpala]
+-- ==========================================================
 
 DROP PROCEDURE IF EXISTS Add_Medical;
 
@@ -29,16 +22,42 @@ CREATE PROCEDURE Add_Medical(
 BEGIN
     DECLARE v_LectureCount INT DEFAULT 0;
     DECLARE v_AbsentCount INT DEFAULT 0;
+    DECLARE v_MedicalCount INT DEFAULT 0;
 
-    
+    -- Validate student registration number
     IF NOT EXISTS (SELECT 1 FROM Student S WHERE S.StudentRegNo = p_RegNo) THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid student: RegNo not found.';
     END IF;
 
+    -- Validate date range
     IF p_StartDate IS NULL OR p_EndDate IS NULL OR p_StartDate > p_EndDate THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid date range: StartDate must be before or equal to EndDate.';
     END IF;
 
+    -- Check duplicate medical submission (same date range or same document)
+    IF EXISTS (
+        SELECT 1
+        FROM Medicals M
+        WHERE M.StudentRegNo = p_RegNo
+          AND (
+              (p_StartDate BETWEEN M.StartDate AND M.EndDate)
+              OR (p_EndDate BETWEEN M.StartDate AND M.EndDate)
+              OR (M.DocumentPath = p_DocumentPath)
+          )
+    ) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Duplicate medical detected: same date range or document already submitted.';
+    END IF;
+
+    -- Check if student already submitted 2 medicals
+    SELECT COUNT(*) INTO v_MedicalCount
+    FROM Medicals
+    WHERE StudentRegNo = p_RegNo;
+
+    IF v_MedicalCount >= 2 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Medical submission limit reached: maximum 2 allowed per student.';
+    END IF;
+
+    --  Count lectures within date range
     SELECT COUNT(*) INTO v_LectureCount
     FROM Lecture L
     JOIN Attendance A ON A.LectureID = L.LectureID
@@ -49,6 +68,7 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No lectures found for this student in the given date range.';
     END IF;
 
+    -- Update attendance to 'Absent'
     UPDATE Attendance A
     JOIN Lecture L ON A.LectureID = L.LectureID
     SET A.Status = 'Absent'
@@ -56,7 +76,7 @@ BEGIN
       AND L.LectureDate BETWEEN p_StartDate AND p_EndDate
       AND A.Status <> 'Absent';
 
-   
+    -- Verify that lectures are marked absent
     SELECT COUNT(*) INTO v_AbsentCount
     FROM Lecture L
     JOIN Attendance A ON A.LectureID = L.LectureID
@@ -68,9 +88,11 @@ BEGIN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: Could not find any lectures marked Absent after update.';
     END IF;
 
+    -- Insert new medical record
     INSERT INTO Medicals (StudentRegNo, StartDate, EndDate, SubmittedDate, DocumentPath, ApprovalStatus)
     VALUES (p_RegNo, p_StartDate, p_EndDate, NOW(), p_DocumentPath, 'Pending');
 
+    -- Return inserted medical record
     SELECT 
         M.MedicalID,
         M.StudentRegNo,
@@ -81,11 +103,10 @@ BEGIN
         M.ApprovalStatus
     FROM Medicals M
     WHERE M.MedicalID = LAST_INSERT_ID();
-END
-/
-/
+END //
+//
 
-DELIMITER;
+DELIMITER ;
 
 CALL Add_Medical (
     'TG2020-007',

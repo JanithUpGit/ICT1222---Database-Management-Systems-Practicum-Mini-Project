@@ -18,7 +18,7 @@ CREATE PROCEDURE Get_medicalsByCourseCode(
     IN p_CourseCode VARCHAR(10)
 )
 BEGIN
-
+    -- Validation Course id 
     IF p_CourseCode IS NULL OR p_CourseCode = '' THEN
         SIGNAL SQLSTATE '45000'
             SET MESSAGE_TEXT = 'Course code cannot be NULL or empty.';
