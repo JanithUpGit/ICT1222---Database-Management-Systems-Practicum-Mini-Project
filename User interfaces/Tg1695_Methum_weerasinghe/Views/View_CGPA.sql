@@ -23,8 +23,8 @@ SELECT
         ) / SUM(c.Credits),
         2
     ) AS CGPA,
-    SUM(c.Credits) AS TotalCredits,
-    COUNT(*) AS TotalCourses
+    SUM(c.Credits) AS TotalCredits
+    
 FROM View_Result AS r
 JOIN Course AS c
   ON r.CourseCode = c.CourseCode
