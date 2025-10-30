@@ -1,7 +1,24 @@
+
+-- ==========================================================
+-- Procedure Name : Add_Medical
+-- Description    : Adds a new medical leave record for a student.
+--                  It validates the student and the date range.
+--                  It then finds all attendance records for the student
+--                  within that range and updates their status to 'Absent'.
+--                  Finally, it inserts a new record into the 'Medicals'
+--                  table with a 'Pending' status and returns the new medical ID.
+--
+-- Parameters     :
+--   p_RegNo        - The registration number of the student.
+--   p_StartDate    - The start date of the medical leave.
+--   p_EndDate      - The end date of the medical leave.
+--   p_DocumentPath - The file path to the scanned medical document.
+--
+-- Author         : [TG1702 Janith Uthpala]
+
 DROP PROCEDURE IF EXISTS Add_Medical;
 
-DELIMITER /
-/
+DELIMITER //
 
 CREATE PROCEDURE Add_Medical(
     IN p_RegNo        VARCHAR(15),

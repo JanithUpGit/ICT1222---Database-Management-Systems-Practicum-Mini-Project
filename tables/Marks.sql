@@ -1,22 +1,27 @@
-
 CREATE TABLE Marks (
     MarkID INT AUTO_INCREMENT PRIMARY KEY,
-    RegNo VARCHAR(15) NOT NULL,
-    CourseID INT NOT NULL,
-    ExamType ENUM(
-        'Quiz',
-        'Assessment',
-        'MidExam',
-        'FinalExam'
-    ) NOT NULL,
-    ExamCategory ENUM('Theory', 'Practical', 'Both') NOT NULL,
-    MarksObtained DECIMAL(5, 2) NOT NULL CHECK (
-        MarksObtained >= 0
-        AND MarksObtained <= 100
-    ),
-    RecordedBy INT NOT NULL,
-    RecordedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (RegNo) REFERENCES Student (StudentRegNo) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON DELETE CASCADE ON UPDATE CASCADE,
+    StudentRegNo VARCHAR(15) NOT NULL,
+    CourseCode VARCHAR(10) NOT NULL,
+    Quiz1 DECIMAL(5,2) DEFAULT 0.00,
+    Quiz2 DECIMAL(5,2) DEFAULT 0.00,
+    Quiz3 DECIMAL(5,2) DEFAULT 0.00,
+    Assessment1 DECIMAL(5,2) DEFAULT 0.00
+);
+CREATE TABLE MidExam (
+    MidExamID INT AUTO_INCREMENT PRIMARY KEY,
+    MarkID INT NOT NULL,
+    ExamType ENUM('Theory', 'Practical') NOT NULL,
+    MidExamMark DECIMAL(5,2) DEFAULT 0.00,
+    FOREIGN KEY (MarkID) REFERENCES Marks(MarkID)
+        ON DELETE CASCADE
+    
 );
 
+CREATE TABLE EndExam (
+    EndExamID INT AUTO_INCREMENT PRIMARY KEY,
+    MarkID INT NOT NULL,
+    ExamType ENUM('Theory', 'Practical') NOT NULL,
+    EndExamMark DECIMAL(5,2) DEFAULT 0.00,
+    FOREIGN KEY (MarkID) REFERENCES Marks(MarkID)
+        ON DELETE CASCADE
+);

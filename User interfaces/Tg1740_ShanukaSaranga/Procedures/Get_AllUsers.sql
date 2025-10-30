@@ -22,11 +22,11 @@ SELECT
     D.DepartmentID,
     D.DeptCode,
     D.DeptName,
-    -- Role-specific columns (nullable)
+   
     S.StudentRegNo,
     S.Batch,
     L.StaffCode,
-    L.Role AS LecturerRole,   -- Note: could be 'Lecturer' or 'Dean' depending on your data
+    L.Role AS LecturerRole,   
     T.TOID,
     U.CreatedAt,
     U.UpdatedAt

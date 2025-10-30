@@ -48,8 +48,7 @@ END //
 DELIMITER ;
 
 
--- Valid department
+
 CALL Get_UsersByDepartmentID(1);
 
--- Invalid department (triggers error)
 CALL Get_UsersByDepartmentID(999);
