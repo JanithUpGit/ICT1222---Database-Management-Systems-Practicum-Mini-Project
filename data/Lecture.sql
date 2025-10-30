@@ -179,3 +179,9 @@ INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours
 (3, 68, '2025-10-30', '14:00:00', 2.00, 'Practical'),
 (3, 68, '2025-11-06', '11:00:00', 2.00, 'Practical'),
 (3, 68, '2025-11-06', '14:00:00', 2.00, 'Practical');
+
+
+INSERT INTO Lecture (CourseID, LecturerID, LectureDate, StartTime, DurationHours, SessionType) VALUES
+(3, 68, '2025-11-07', '11:00:00', 2.00, 'Practical'),
+(3, 68, '2025-11-08', '14:00:00', 2.00, 'Practical'),
+(3, 68, '2025-11-09', '11:00:00', 2.00, 'Theory');

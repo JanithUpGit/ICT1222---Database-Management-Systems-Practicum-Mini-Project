@@ -22,14 +22,14 @@ BEGIN
         CONCAT(u.FirstName, ' ', u.LastName) AS StudentName,
         s.Batch,
         d.DepartmentID,
-        d.DepartmentName
+        d.DeptName
     FROM Student s
-    JOIN Users u       ON s.UserID = u.UserID
-    JOIN Department d  ON s.DepartmentID = d.DepartmentID
+    JOIN Users u       ON s.UserID = u.Id
+    JOIN Department d  ON u.DepartmentID = d.DepartmentID
     WHERE s.Batch = p_Batch
     ORDER BY s.StudentRegNo;
 END //
 DELIMITER ;
 
 
-CALL Get_StudentByBatch('ICT2021');
+CALL Get_StudentByBatch('2020');

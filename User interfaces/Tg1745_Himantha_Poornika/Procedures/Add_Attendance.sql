@@ -74,3 +74,23 @@ BEGIN
 END //
 //
 DELIMITER ;
+
+
+-- SHOW PROCEDURE STATUS WHERE Db = 'university'; 
+--( p_RegNo, p_LectureID, p_Status, p_RecordedBy, p_SessionDate)
+
+CALL Add_Attendance('TG2020-003', '242', 'Absent','67', '2026-01-11');
+CALL Add_Attendance('TG2020-005', '242', 'Absent','67', '2026-07-11');
+
+
+
+CALL Add_Attendance('TG2020-005', '242', 'Absent','67', '2026-11-07');
+
+
+CALL Add_Attendance('TG2020-002', '242', 'Absent','67', '2026-11-07');
+CALL Add_Attendance('TG2020-003', '242', 'Absent','67', '2026-11-07');
+
+
+
+
+

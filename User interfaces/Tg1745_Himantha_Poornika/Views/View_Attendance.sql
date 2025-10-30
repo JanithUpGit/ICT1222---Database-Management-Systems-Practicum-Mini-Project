@@ -44,4 +44,8 @@ FROM
     LEFT JOIN Users R ON R.Id = A.RecordedBy
 ORDER BY C.CourseID, L.LectureDate, S.StudentRegNo;
 
-SELECT * FROM View_Attendance;
+
+
+SELECT * 
+FROM View_Attendance 
+LIMIT 10;
