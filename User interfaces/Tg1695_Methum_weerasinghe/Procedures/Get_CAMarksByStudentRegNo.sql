@@ -22,3 +22,7 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+
+CALL Get_CAMarksByStudentRegNo('TG2020-001');
